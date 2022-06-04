@@ -1,0 +1,40 @@
+なんかパスワード認証できるらしい(パスワードのハッシュ化ないから雑魚) 
+https://qiita.com/TR246/items/104320a937e00f31cd8f
+
+<input id="pass" type="passsword"></input>
+<button id="enter">決定</button>
+
+$(() => {
+    const $pass = $("#pass");
+    const $enter = $("#enter");
+    $enter.on("click", () => {
+        $.ajax({
+            url: $pass.val() + ".html"
+        }).then(html => {
+            $("body").html(html);
+        }).catch(() => {
+            alert("パスワード認証に失敗しました");
+            $pass.val("");
+        });
+    })
+    $pass.on("keydown", e => {
+        if(e.keyCode === 13) $enter.trigger("click");
+    });
+});
+
+---------------------------------------
+最強、多分全部乗ってる(php使ってるからそこ変更するの面倒)
+https://www.websec-room.com/2015/03/15/2153
+
+---------------------
+認証
+https://allabout.co.jp/gm/gc/23839/
+
+------------------------
+google認証
+https://www.topgate.co.jp/firebase05-firebase-authentication
+
+
+
+
+

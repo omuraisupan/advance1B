@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang = "ja">
+    <head>
+        <meta http-equiv = "Content-Type" content = "text/html; charset = uft-8">
+        <title> 認証 </title>
+        <style type = "text/css">
+            span.password{
+                font-size : 150%;
+                font-family : monospace;
+                font-weight : bold;
+                margin : 0xp 0.3em;
+            }
+            input[type = button]{
+                font-size : 125%;
+                margin : 2em;
+            }
+            div.guide{
+                background-color : #e0e0e0;
+                padding : 3px 1em;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>認証サンプル</h1>
+        <p>
+            パスワード入力ダイアログを表示
+            <br>
+            パスワード = 
+            <span class = "password">kekka </span>
+        </p>
+
+        <script type="text/javascript">
+            function gate(){
+                //入力を求める
+                var userInput = prompt("パスワードを入力してください","");
+                //チェック
+                if(/\W+/g.test(userInput)){
+                    //半角英数字以外が入力されたらエラー
+                    alert("半角英数字のみを入力して下さい");
+                }else if(userInput != null){
+                    location.href = userInput + ".html";
+                }
+            }
+        </script>
+
+        <p>
+            <input type = "button" value = "パスワードを入力する" onclick = gate();>
+        </p>
+
+        <p>
+            <a href="https://ninsyou.co.jp">戻る</a>
+        </p>
+    </body>
+</html>
