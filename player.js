@@ -1,9 +1,11 @@
+import hand from hand.js
+
 class Player {
 
-  constructor( userID, chip, card ) {
-    this.userID = userID;
-    this.chip = chip;
-    this.card = card;
+  constructor( _userID, _chip ) {
+    this._userID = _userID;
+    this._chip = _chip;
+    this._cards = hand.cardInit();
   }
 
   bit( _chip ) {
@@ -42,8 +44,8 @@ class Player {
     return this.userID
   }
 
-  exchange( cardNumber ) {
+  exchange( _cardNumber ) {
     /*ゲーム情報処理部の関数呼び出し*/
-    /*this.card =  function(cardNumber)*/
+    /*this.card =  function(_cardNumber)*/
   }
 }
