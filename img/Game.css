@@ -1,0 +1,22 @@
+ul {
+   display: flex;
+}
+
+#me {
+   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  -webkit- transform: translateX(-50%);
+}
+
+
+
+
+.oPC1-1 {
+   width: 41px;
+   height: 60px;
+
+   background: url(card_back.png);
+   background-size: cover
+}

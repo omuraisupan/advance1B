@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>ポーカー: タイトル</title>
+    <script type="text/javascript" src="Title.js"></script>
+  </head>
+
+  <header>
+    <center>
+        <h1>ポーカーゲーム</h1>
+    </center>
+    </header>
+    <style>
+        header {
+            position: fixed;
+            color: white;
+            width: 100%;
+            height: 70px;
+            background-color: #1fa1c2;
+        }
+    </style>
+<br>
+<br>
+<br>
+    <body>
+        <div>
+            <form name="login_form">
+                <center>
+                    <h1>ログイン</h1>
+                    <p>ID, Passwordを入力し、ログインボタンを押してください.</p>
+                    <p>アカウントをお持ちでない場合、アカウント作成ボタンを押してください.</p>
+                </center>
+                <div>
+                    <center>
+                        <div>
+                            <input type="id" name="id" placeholder="ID">
+                        </div>
+                        <br>
+                        <div>
+                            <input type="password" name="pass" placeholder="Password">
+                        </div>
+                    </center>
+                </div>
+                <br>
+
+                <!--ログイン、アカウント作成ボタン-->
+                <div>
+                <center>
+                    <button id=loginButton onckick="location.href='./MainMenu.html">ログイン</button>
+                    <br>
+                    <br>
+                    <br>
+                    <button onckick="location.href='./CreateAccount.html">アカウント作成</button>
+                </center>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
