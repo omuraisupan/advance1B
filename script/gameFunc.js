@@ -1,4 +1,8 @@
-const gameFunction = {
+//各プレイヤーのチップ数を保管
+let chipData = [];
+let bitData = [];
+
+const gameData = {
   chip: function( userID, chip) {
 
   },
@@ -12,3 +16,12 @@ const gameFunction = {
     
   }
 }
+
+const chipSet = ( userID, chip ) => {
+  chipData.push({ userID: userID, chip: chip})
+}
+
+chipSet( "aaa", 31)
+chipSet( "bbb", 23)
+
+console.log(chipData)

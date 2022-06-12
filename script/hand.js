@@ -143,9 +143,9 @@ export const hand = {
 }
 
 //デバッグ用
-deckInit();
+/*deckInit();
 console.log(hand.checkHand(hand.cardInit()));
 deckInit();
 console.log(hand.checkHand(hand.cardInit()));
 deckInit();
-console.log(hand.checkHand(hand.cardInit()));
+console.log(hand.checkHand(hand.cardInit()));*/
