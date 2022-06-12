@@ -1,14 +1,14 @@
 const gameFunction = {
-  chip: function( _userID, _chip) {
+  chip: function( userID, chip) {
 
   },
-  declare: function( _userID, _chip, _kind) {
+  declare: function( userID, chip, kind) {
 
   },
-  turnChange: function( _userID) {
+  turnChange: function( userID) {
 
   },
-  result: function( _userID, _king) {
+  result: function( userID, king) {
     
   }
 }

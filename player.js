@@ -1,14 +1,15 @@
-import hand from hand.js
+import { deck, deckInit, hand } from "hand.js" 
 
 class Player {
 
-  constructor( _userID, _chip ) {
-    this._userID = _userID;
-    this._chip = _chip;
+  constructor( userID, chip ) {
+    this._userID = userID;
+    this._chip = chip;
     this._cards = hand.cardInit();
+    this._turn = false;
   }
 
-  bit( _chip ) {
+  bit( chip ) {
     console.log("bit before chip:" + this.chip);
     /*ゲーム情報処理部の関数呼び出し*/
     /*this.chip = function(userID, _chip)*/
@@ -20,7 +21,7 @@ class Player {
     }
   }
 
-  rise( _chip ) {
+  rise( chip ) {
     console.log("bit before chip:" + this.chip);
     /*ゲーム情報処理部の関数呼び出し*/
     /*this.chip = function(userID, _chip)*/
@@ -44,7 +45,7 @@ class Player {
     return this.userID
   }
 
-  exchange( _cardNumber ) {
+  exchange( cardNumber ) {
     /*ゲーム情報処理部の関数呼び出し*/
     /*this.card =  function(_cardNumber)*/
   }
