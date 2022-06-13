@@ -1,32 +1,4 @@
-//山札配列を作るための配列
-const suitList = [ "spade", "clover", "diamond", "heart" ];
-const numList = [
-  {num: 1},
-  {num: 2},
-  {num: 3},
-  {num: 4},
-  {num: 5},
-  {num: 6},
-  {num: 7},
-  {num: 8},
-  {num: 9},
-  {num: 10},
-  {num: 11},
-  {num: 12},
-  {num: 13},
-]
-
-// 山札 {suit, number}の配列　分割代入を利用
-const deckList = suitList.map( suit => numList.map( number => ({suit, ...number}))).flat();
-
-//実際に使用する山札
-export let deck
-
-//山札を初期状態にしてシャッフルする
-export const deckInit = () => {
-  deck = [...deckList]
-  deck.sort(()=> Math.random() - 0.5);
-}
+import { deck } from "./gamemanage.js"
 
 export const hand = {
   //山札から手札5毎を配る
@@ -141,11 +113,3 @@ export const hand = {
     return false;
   },
 }
-
-//デバッグ用
-/*deckInit();
-console.log(hand.checkHand(hand.cardInit()));
-deckInit();
-console.log(hand.checkHand(hand.cardInit()));
-deckInit();
-console.log(hand.checkHand(hand.cardInit()));*/

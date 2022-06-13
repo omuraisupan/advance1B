@@ -1,5 +1,6 @@
-import { /*deck, deckInit,*/ deck, deckInit, hand } from "./hand.js" 
-//import { gameFunction } from "gameFcnc.js"
+import { hand } from "./hand.js" 
+import { deck, deckInit, chipData, betData, dropData, turnData,
+        setPlayers, setBet, setChip, setDrop, setTurn } from "./gamemanage.js"
 
 //デバッグ用
 deckInit();
@@ -20,6 +21,10 @@ export class Player {
 
   getUserID() {
     return this._userID;
+  }
+
+  getChip() {
+    return this._chip;
   }
 
   getBedChip() {
@@ -44,6 +49,8 @@ export class Player {
 
   changeTurn() {
     this._turn = !this._turn;
+    /*ゲーム情報処理部の関数呼び出し*/
+    setTurn( this );
     return this._turn;
   }
 
@@ -51,6 +58,8 @@ export class Player {
     this._bedChip += chip;
     this._chip -= chip;
     /*ゲーム情報処理部の関数呼び出し*/
+    setBet( this );
+    setChip( this );
   }
 
   rise( chip ) {
@@ -58,6 +67,9 @@ export class Player {
       this._riseCount--;
       this._bedChip += chip;
       this._chip -= chip;
+      /*ゲーム情報処理部の関数呼び出し*/
+      setBet( this );
+      setChip( this );
     } else {
       console.log("ERROR NO RISECOUNT LEFT");
       return "ERROR"
@@ -66,6 +78,8 @@ export class Player {
 
   drop() {
     this._drop = true;
+    /*ゲーム情報処理部の関数呼び出し*/
+    setDrop( this );
   }
 
   check() {
@@ -80,9 +94,16 @@ export class Player {
 }
 
 //デバッグ用
-const taro = new Player("taro", 10000);
-console.log(taro.getCards());
-const c = taro.getCards()[0];
-console.log( c );
-taro.exchange( c );
-console.log(taro.getCards());
+/*const taro = new Player("taro", 10000);
+const jiro = new Player("jiro", 10000);
+const fuga = new Player("fuga", 10000);
+
+const players = [ taro, jiro, fuga ];
+setPlayers( players );
+taro.bit(1000);
+taro.changeTurn();
+taro.drop();
+console.log( betData );
+console.log( chipData );
+console.log( dropData );
+console.log( turnData );*/
