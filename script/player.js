@@ -4,13 +4,14 @@ import { /*deck, deckInit,*/ deck, deckInit, hand } from "./hand.js"
 //デバッグ用
 deckInit();
 //
-class Player {
+export class Player {
 
   constructor( userID, chip ) {
     this._userID = userID;
     this._chip = chip;
     this._bedChip = 0;
     this._cards = hand.cardInit();
+    this._riseCount = 1;
     this._drop = false;
     this._turn = false;
 
@@ -29,6 +30,10 @@ class Player {
     return this._cards;
   }
 
+  getRiseCount() {
+    return this._riseCount;
+  }
+
   isDrop() {
     return this._drop;
   }
@@ -45,19 +50,17 @@ class Player {
   bit( chip ) {
     this._bedChip += chip;
     this._chip -= chip;
-    this._turn = false;
     /*ゲーム情報処理部の関数呼び出し*/
   }
 
   rise( chip ) {
-    console.log("bit before chip:" + this.chip);
-    /*ゲーム情報処理部の関数呼び出し*/
-    /*this.chip = function(userID, _chip)*/
-
-    console.log("bit after chip:" + this.chip);
-    return {
-      "before":_chip,
-      "after":this.chip
+    if (this._riseCount > 0) {
+      this._riseCount--;
+      this._bedChip += chip;
+      this._chip -= chip;
+    } else {
+      console.log("ERROR NO RISECOUNT LEFT");
+      return "ERROR"
     }
   }
 
@@ -67,7 +70,6 @@ class Player {
 
   check() {
     this.bit(0);
-    this.turn = false;
   }
 
   exchange( card ) {
