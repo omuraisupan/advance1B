@@ -98,8 +98,12 @@ export const hand = {
   isFlush: function( cards ) {
     const suit = cards[0].suit;
     for (const card of cards ) {
-      if (card.suit == suit) continue;
-      else return false;
+      if (card.suit == suit) {
+        continue;
+      }
+      else {
+        return false;
+      }
     }
     return true;
   },
