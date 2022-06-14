@@ -1,5 +1,10 @@
 import { deck } from "./gamemanage.js"
 
+/*card について
+{suit:heart, num:3}
+などのオブジェクトの形式です
+*/
+
 export const hand = {
   //山札から手札5毎を配る
   cardInit: function() {
@@ -20,16 +25,36 @@ export const hand = {
   },
   //手札の役を判定する
   checkHand: function( cards ) {
-    if (this.isRoyalStraightFlush( cards )) return "RoyalStraightFlush"
-    else if (this.isStraightFlush( cards )) return "StraightFlush"
-    else if (this.isFourCard( cards )) return "FourCard"
-    else if (this.isFullHouse( cards )) return "FullHouse"
-    else if (this.isFlush( cards )) return "Flush"
-    else if (this.isStraight( cards )) return "Straight"
-    else if (this.isThreeCard( cards )) return "ThreeCard"
-    else if (this.isTwoPair( cards )) return "TwoPair"
-    else if (this.isOnePair( cards )) return "OnePair"
-    else return "NoPair"
+    if (this.isRoyalStraightFlush( cards )) {
+      return "RoyalStraightFlush"
+    }
+    else if (this.isStraightFlush( cards )) {
+      return "StraightFlush"
+    }
+    else if (this.isFourCard( cards )) {
+      return "FourCard"
+    }
+    else if (this.isFullHouse( cards )) {
+      return "FullHouse"
+    }
+    else if (this.isFlush( cards )) {
+      return "Flush"
+    }
+    else if (this.isStraight( cards )) {
+      return "Straight"
+    }
+    else if (this.isThreeCard( cards )) {
+      return "ThreeCard"
+    }
+    else if (this.isTwoPair( cards )) {
+      return "TwoPair"
+    }
+    else if (this.isOnePair( cards )) {
+      return "OnePair"
+    }
+    else {
+      return "NoPair"
+    }
   },
 
   //役判定用の関数
@@ -42,9 +67,13 @@ export const hand = {
   },
   //ロイヤルストレートフラッシュ
   isRoyalStraightFlush: function( cards ) {
-    if (!this.isStraightFlush( cards )) return false;
+    if (!this.isStraightFlush( cards )) {
+      return false;
+    }
     countList = this.numCount( cards );
-    if (countList[1] == 1 && countList[13] == 1) return true;
+    if (countList[1] == 1 && countList[13] == 1) {
+      return true;
+    }
     return false;
   },
   //ストレートフラッシュ
@@ -54,7 +83,9 @@ export const hand = {
   //フォーカード
   isFourCard: function( cards ) {
     for (const count of this.numCount( cards )) {
-      if (count >= 4) return true;
+      if (count >= 4) {
+        return true;
+      }
     }
     return false;
   },
@@ -76,23 +107,35 @@ export const hand = {
   isStraight: function ( cards ) {
     let _cards = [...cards];
     _cards.sort(function(a,b) {
-      if (a.num < b.num) return -1;
-      if (a.num > b.num) return 1;
+      if (a.num < b.num) {
+        return -1;
+      }
+      if (a.num > b.num) {
+        return 1;
+      }
       return 0;
     })
     //10,J,Q,K,A の役は例外
     if (_cards[0] == 1 && _cards[1] == 10 && _cards[2] == 11
-      && _cards[3] == 12 && _cards[4] == 13) return true;
+      && _cards[3] == 12 && _cards[4] == 13) {
+        return true;
+      }
     for (let i = 0; i < _cards.length-1; i++) {
-      if(_cards[i+1].num - _cards[i].num == 1) continue;
-      else return false
+      if(_cards[i+1].num - _cards[i].num == 1) {
+        continue;
+      }
+      else {
+        return false;
+      }
     }
     return true;
   },
   //スリーカード
   isThreeCard: function( cards ) {
     for (const count of this.numCount( cards )) {
-      if (count >= 3) return true;
+      if (count >= 3) {
+        return true;
+      }
     }
     return false;
   },
@@ -100,15 +143,21 @@ export const hand = {
   isTwoPair: function( cards ) {
     let pairs = 0;
     for (const count of this.numCount( cards )) {
-      if (count >= 2) pairs++;
+      if (count >= 2) {
+        pairs++;
+      }
     }
-    if (pairs == 2) return true;
+    if (pairs == 2) {
+      return true;
+    }
     return false;
   },
   //ワンペア
   isOnePair: function( cards ) {
     for (const count of this.numCount( cards )) {
-      if (count >= 2) return true;
+      if (count >= 2) {
+        return true;
+      }
     }
     return false;
   },
