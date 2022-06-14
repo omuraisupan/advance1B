@@ -54,7 +54,7 @@
           uname : $("#uname").val(),
           text  : $("#text").val()
       }
-
+      
       const newPostRef = push(dbRef); //ユニークキーを生成
       console.log(newPostRef);
       set(newPostRef,msg);
