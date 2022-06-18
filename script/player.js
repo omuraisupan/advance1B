@@ -1,10 +1,4 @@
 import { hand } from "./hand.js" 
-import { deck, deckInit, chipData, betData, dropData, turnData,
-        setPlayers, setBet, setChip, setDrop, setTurn } from "./gamemanage.js"
-
-//デバッグ用/////////
-deckInit();
-///////////////////
 
 /* 6.19 omu
 
@@ -18,11 +12,12 @@ export class Player {
 
   /* 6.19 (omu)
 
+  6.19 引数に deck を追加.cardInitの引数にdeckを入れる. (omu)
   6.19 コメント追加 (omu)
   ------------------------
 
-  arg: userID: String // ユーザIDです.
-       chip: Integer // ゲーム開始時のチップ数です.
+  arg: userID: string // ユーザIDです.
+       chip: int // ゲーム開始時のチップ数です.
   let: none
 
   プライベート変数
@@ -40,11 +35,11 @@ export class Player {
   コンストラクタです.プライベート変数の初期化を行います.
   上記の変数はいかに記述するメソッドで操作します.
   */
-  constructor( userID, chip ) {
+  constructor( userID, chip, deck ) {
     this._userID = userID;
     this._chip = chip;
     this._bedChip = 0;
-    this._cards = hand.cardInit();
+    this._cards = hand.cardInit( deck );
     this._riseCount = 1;
     this._drop = false;
     this._turn = false;
@@ -199,8 +194,6 @@ export class Player {
   */
   changeTurn() {
     this._turn = !this._turn;
-    /*ゲーム情報処理部の関数呼び出し*/
-    setTurn( this );
     return this._turn;
   }
 
@@ -220,9 +213,6 @@ export class Player {
   bit( chip ) {
     this._bedChip += chip;
     this._chip -= chip;
-    /*ゲーム情報処理部の関数呼び出し*/
-    setBet( this );
-    setChip( this );
   }
 
   /* 6.19 omu
@@ -243,9 +233,6 @@ export class Player {
       this._riseCount--;
       this._bedChip += chip;
       this._chip -= chip;
-      /*ゲーム情報処理部の関数呼び出し*/
-      setBet( this );
-      setChip( this );
     } else {
       console.log("ERROR NO RISECOUNT LEFT");
       return "ERROR"
@@ -267,8 +254,6 @@ export class Player {
   */
   drop() {
     this._drop = true;
-    /*ゲーム情報処理部の関数呼び出し*/
-    setDrop( this );
   }
 
   /* 6.19 omu
@@ -308,19 +293,22 @@ export class Player {
     this._cards.push( hand.deal(deck) );
     return this._cards;
   }
+
+  /* 6.19 omu
+
+  6.19 作成 (omu)
+  -----------------------
+  player.cardInit( card )
+
+  arg: Array[ card, ... , card ] //山札の枚数分
+    //card:{ suit: heart, num: 3}などのオブジェクトの形式
+  ret: none
+
+  -----------------------
+  プレイヤーの手札を生成します.
+
+  */
+  cardInit( deck ) {
+    this._cards = hand.cardInit( deck );
+  }
 }
-
-//デバッグ用
-/*const taro = new Player("taro", 10000);
-const jiro = new Player("jiro", 10000);
-const fuga = new Player("fuga", 10000);
-
-const players = [ taro, jiro, fuga ];
-setPlayers( players );
-taro.bit(1000);
-taro.changeTurn();
-taro.drop();
-console.log( betData );
-console.log( chipData );
-console.log( dropData );
-console.log( turnData );*/

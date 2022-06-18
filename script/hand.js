@@ -1,5 +1,3 @@
-import { deck } from "./gamemanage.js"
-
 /* 6.19 omu
 handオブジェクトは手札に関する処理を記述しています.
 
@@ -11,18 +9,21 @@ card について
 export const hand = {
   /* 6.19 omu
 
+  6.19 引数にdeckを追加(omu)
   6.19 コメント作成 (omu)
   -----------------------
   hand.cardInit()
 
-  arg: none
+  arg: Array[ card, ... ,card] // 山札の枚数文ある
   ret: Array[ card, card, card, card, card ]
+
+  card: { suit: heart, num: 3}などのオブジェクト
 
   -----------------------
   初期手札の5枚を山札から引きます.
   返り値は5枚のカードです.
   */
-  cardInit: function() {
+  cardInit: function( deck ) {
     let cards = [
       this.deal(deck),
       this.deal(deck),
