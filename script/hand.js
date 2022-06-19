@@ -1,13 +1,29 @@
-import { deck } from "./gamemanage.js"
+/* 6.19 omu
+handオブジェクトは手札に関する処理を記述しています.
 
-/*card について
-{suit:heart, num:3}
-などのオブジェクトの形式です
+card について
+{ suit: heart, num: 3 }
+などのオブジェクトの形式です.
 */
 
 export const hand = {
-  //山札から手札5毎を配る
-  cardInit: function() {
+  /* 6.19 omu
+
+  6.19 引数にdeckを追加(omu)
+  6.19 コメント作成 (omu)
+  -----------------------
+  hand.cardInit()
+
+  arg: Array[ card, ... ,card] // 山札の枚数文ある
+  ret: Array[ card, card, card, card, card ]
+
+  card: { suit: heart, num: 3}などのオブジェクト
+
+  -----------------------
+  初期手札の5枚を山札から引きます.
+  返り値は5枚のカードです.
+  */
+  cardInit: function( deck ) {
     let cards = [
       this.deal(deck),
       this.deal(deck),
@@ -18,12 +34,43 @@ export const hand = {
     console.log(cards)
     return cards;
   },
+  /* 6,19 omu
+
+  6.19 コメント作成 (omu)
+  ------------------------
+  hand.deal( deck )
+  deck: Array[ card, card, ... , card ] //山札の枚数だけcardがあります.
+  card: { suit: heart, num: 3 }などの形式のオブジェクト
+
+  arg: deckオブジェクト
+  ret: card
+
+  ------------------------
+  山札からカード1枚を配ります.
+  返り値は1枚のカードです.
+
+  */
   //山札から手札を1枚配る
   deal: function( deck ) {
     let card = deck.shift();
     return card;
   },
-  //手札の役を判定する
+  /* 6.19 omu
+
+  6.19 コメント作成 (omu)
+  ------------------------
+  hand.checkHand( cards )
+  cards: Array[ card, card, card, card, card]
+  card: { suit: heart, num: 3 } などの形式のオブジェクト
+
+  arg: Array[ card, card, card, card, card ]
+  ret: string //役名を出力します
+
+  ------------------------
+  手札の役を判定します.
+  返り値はその役の名前です.
+
+  */
   checkHand: function( cards ) {
     if (this.isRoyalStraightFlush( cards )) {
       return "RoyalStraightFlush"
@@ -57,6 +104,10 @@ export const hand = {
     }
   },
 
+  /* 6.19 omu
+    以下のメソッドはすべてcheckHandメソッドの動作用です.
+    詳細は記述しません.
+  */
   //役判定用の関数
   numCount: function ( cards ){
     const countList = new Array(14).fill(0);
@@ -98,8 +149,12 @@ export const hand = {
   isFlush: function( cards ) {
     const suit = cards[0].suit;
     for (const card of cards ) {
-      if (card.suit == suit) continue;
-      else return false;
+      if (card.suit == suit) {
+        continue;
+      }
+      else {
+        return false;
+      }
     }
     return true;
   },
