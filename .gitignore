@@ -1,2 +1,3 @@
-.gitignore
-index.html
+.firebaserc
+database.rules.json
+firestore.rules
