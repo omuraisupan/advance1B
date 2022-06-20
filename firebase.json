@@ -12,7 +12,12 @@
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
-    ]
+    ],
+    "redirects": [{
+      "source": "/",
+      "destination": "/Title.html",
+      "type": 301
+    }]
   },
   "emulators": {
     "auth": {
