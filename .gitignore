@@ -1,3 +1,4 @@
 .firebaserc
+*.log
 database.rules.json
 firestore.rules
