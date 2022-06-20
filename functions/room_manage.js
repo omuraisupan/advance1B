@@ -1,7 +1,7 @@
-import { Player } from "./player.js";
-import { GameManage } from "./game_manage.js";
+const Player = require("./player.js");
+const GameManage = require("./game_manage.js")
 
-export class RoomManage {
+module.exports = class RoomManage {
 
   
   /* 6.19 omu

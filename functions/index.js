@@ -7,3 +7,7 @@ const functions = require("firebase-functions");
 //   functions.logger.info("Hello logs!", {structuredData: true});
 //   response.send("Hello from Firebase!");
 // });
+
+const test = require('./game_play');
+
+exports.test = test.test;

@@ -1,4 +1,4 @@
-export class GameManage{
+module.exports = class GameManage{
 //山札配列を作るための配列
   suitList = [ "spade", "clover", "diamond", "heart" ];
   numList = [

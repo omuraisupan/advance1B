@@ -1,4 +1,4 @@
-import { hand } from "./hand.js" 
+const hand = require("./hand.js")
 
 /* 6.19 omu
 
@@ -8,7 +8,7 @@ import { hand } from "./hand.js"
 プレイヤーが行うことをメソッドとして記述しています.
 
 */
-export class Player {
+module.exports = class Player {
 
   /* 6.19 (omu)
 
