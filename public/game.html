@@ -1,43 +1,47 @@
 <!DOCTYPE html>
 <html lang="ja">
-    <head>
-        <meta charaset="UTF-8">
-        <title>ポーカー: プレイ画面</title>
-        <link rel="stylesheet" href="img/Game.css">
-    </head>
 
-    <body>
-      <!--CSSでプレイヤーごとに位置調整-->
-      <div id=me>
-        <p>You</p>
-        <p>持ちチップ10000<span id=持チップ変数ID></span></p>
-        <p>賭けチップ1000<span id=賭けチップ変数ID></span></p>
-        <ul>
-          <button type="button"><img src="img/card_back.png" width="41" height="60" alt=""></button>
-          <button type="button"><img src="img/card_back.png" width="41" height="60" alt=""></button>
-          <button type="button"><img src="img/card_back.png" width="41" height="60" alt=""></button>
-          <button type="button"><img src="img/card_back.png" width="41" height="60" alt=""></button>
-          <button type="button"><img src="img/card_back.png" width="41" height="60" alt=""></button>
-        </ul>
-        <p><span id=checkHand></span></p>
-      </div>
+<head>
+  <meta charaset="UTF-8">
+  <title>ポーカー: プレイ画面</title>
+  <script src="hand.js"></script>
+  <script src="HandDisplay.js"></script>
+  <link rel="stylesheet" href="img/Game.css">
+</head>
 
+<body>
+  <!--CSSでgridで位置調整-->
+  <div id="players">
+    <div id=me>
+      <p>You</p>
+      <p>持ちチップ10000<span id=持チップ変数ID></span></p>
+      <p>賭けチップ1000<span id=賭けチップ変数ID></span></p>
+      <ul>
+        <button type="button" class="cardButton"><img src="img/card_back.png" width="82" height="120" alt=""></button>
+        <button type="button" class="cardButton"><img src="img/card_back.png" width="82" height="120" alt=""></button>
+        <button type="button" class="cardButton"><img src="img/card_back.png" width="82" height="120" alt=""></button>
+        <button type="button" class="cardButton"><img src="img/card_back.png" width="82" height="120" alt=""></button>
+        <button type="button" class="cardButton"><img src="img/card_back.png" width="82" height="120" alt=""></button>
+      </ul>
+      <p><span id=checkHand></span></p>
+    </div>
+
+    <div id=otherPlayer>
       <div id=othrePlayer1>
         <p>OtherPlayer1</p>
         <p>持ちチップ9000<span id=持チップ変数ID></span></p>
         <p>賭けチップ500<span id=賭けチップ変数ID></span></p>
         <div class="oP1Cards">
           <ul>
-            <button type="button"><img src="img/card_back.png" width="41" height="60" alt=""></button>
-            <button type="button"><img src="img/card_back.png" width="41" height="60" alt=""></button>
-            <button type="button"><img src="img/card_back.png" width="41" height="60" alt=""></button>
-            <button type="button"><img src="img/card_back.png" width="41" height="60" alt=""></button>
-            <button type="button"><img src="img/card_back.png" width="41" height="60" alt=""></button>
-        </ul>
+            <img src="img/card_back.png" width="30" height="45" alt="">
+            <img src="img/card_back.png" width="30" height="45" alt="">
+            <img src="img/card_back.png" width="30" height="45" alt="">
+            <img src="img/card_back.png" width="30" height="45" alt="">
+            <img src="img/card_back.png" width="30" height="45" alt="">
+          </ul>
         </div>
         <p><span id=checkHandOP1></span></p>
       </div>
-      <br>
 
       <div id=othrePlayer2>
         <p>OtherPlayer2</p>
@@ -45,33 +49,31 @@
         <p>賭けチップ500<span id=賭けチップ変数ID></span></p>
         <div class="oP2Cards">
           <ul>
-            <button><img src="img/card_back.png" width="41" height="60" alt=""></button>
-            <button><img src="img/card_back.png" width="41" height="60" alt=""></button>
-            <button><img src="img/card_back.png" width="41" height="60" alt=""></button>
-            <button><img src="img/card_back.png" width="41" height="60" alt=""></button>
-            <button><img src="img/card_back.png" width="41" height="60" alt=""></button>
+            <img src="img/card_back.png" width="30" height="45" alt="">
+            <img src="img/card_back.png" width="30" height="45" alt="">
+            <img src="img/card_back.png" width="30" height="45" alt="">
+            <img src="img/card_back.png" width="30" height="45" alt="">
+            <img src="img/card_back.png" width="30" height="45" alt="">
           </ul>
         </div>
         <p><span id=checkHandOP2></span></p>
       </div>
-      <br>
-      
+
       <div id=othrePlayer3>
         <p>OtherPlayer3</p>
         <p>持ちチップ9000<span id=持チップ変数ID></span></p>
         <p>賭けチップ500<span id=賭けチップ変数ID></span></p>
         <div class="oP3Cards">
           <ul>
-            <button type="button"><img src="img/card_back.png" width="41" height="60" alt=""></button>
-            <button type="button"><img src="img/card_back.png" width="41" height="60" alt=""></button>
-            <button type="button"><img src="img/card_back.png" width="41" height="60" alt=""></button>
-            <button type="button"><img src="img/card_back.png" width="41" height="60" alt=""></button>
-            <button type="button"><img src="img/card_back.png" width="41" height="60" alt=""></button>
-        </ul>
+            <img src="img/card_back.png" width="30" height="45" alt="">
+            <img src="img/card_back.png" width="30" height="45" alt="">
+            <img src="img/card_back.png" width="30" height="45" alt="">
+            <img src="img/card_back.png" width="30" height="45" alt="">
+            <img src="img/card_back.png" width="30" height="45" alt="">
+          </ul>
         </div>
         <p><span id=checkHandOP3></span></p>
       </div>
-      <br>
 
       <div id=othrePlayer4>
         <p>OtherPlayer4</p>
@@ -79,17 +81,17 @@
         <p>賭けチップ500<span id=賭けチップ変数ID></span></p>
         <div class="oP4Cards">
           <ul>
-            <button type="button"><img src="img/card_back.png" width="41" height="60" alt=""></button>
-            <button type="button"><img src="img/card_back.png" width="41" height="60" alt=""></button>
-            <button type="button"><img src="img/card_back.png" width="41" height="60" alt=""></button>
-            <button type="button"><img src="img/card_back.png" width="41" height="60" alt=""></button>
-            <button type="button"><img src="img/card_back.png" width="41" height="60" alt=""></button>
-        </ul>
+            <img src="img/card_back.png" width="30" height="45" alt="">
+            <img src="img/card_back.png" width="30" height="45" alt="">
+            <img src="img/card_back.png" width="30" height="45" alt="">
+            <img src="img/card_back.png" width="30" height="45" alt="">
+            <img src="img/card_back.png" width="30" height="45" alt="">
+          </ul>
         </div>
         <p><span id=checkHandOP4></span></p>
       </div>
-      <br>
+    </div>
+  </div>
+</body>
 
-      <script type="module" src="./script/hand_display.js"></script>
-    </body>
 </html>
