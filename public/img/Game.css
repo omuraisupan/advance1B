@@ -2,12 +2,8 @@ ul {
    display: flex;
 }
 
-#medelete {
-   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%);
-  -webkit- transform: translateX(-50%);
+#me {
+   font-size: 20px
 }
 
 .oPC1-1 {
@@ -23,15 +19,15 @@ ul {
    line-height: 10px;
    display: grid;
    grid-template-columns: 1fr 1fr 1fr 1fr;
-   grid-template-rows: 1fr 1fr 50px 1fr 1fr;
+   grid-template-rows: 20px 20px 10px 20px 20px;
    grid-gap: 10px;
 
    grid-template-areas:
    "area1 area2 area3 area4"
    "area5 area6 area7 area8"
    "...."
-   ". myArea myArea ."
-   ". myArea myArea .";
+   "myArea myArea"
+   "myArea myArea";
 }
 
 #me {
