@@ -2,7 +2,7 @@ ul {
    display: flex;
 }
 
-#me {
+#medelete {
    position: absolute;
   top: 50%;
   left: 50%;
@@ -10,13 +10,48 @@ ul {
   -webkit- transform: translateX(-50%);
 }
 
-
-
-
 .oPC1-1 {
    width: 41px;
    height: 60px;
 
    background: url(card_back.png);
    background-size: cover
+}
+
+#players {
+   font-size: 10px;
+   line-height: 10px;
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr 1fr;
+   grid-template-rows: 1fr 1fr 50px 1fr 1fr;
+   grid-gap: 10px;
+
+   grid-template-areas:
+   "area1 area2 area3 area4"
+   "area5 area6 area7 area8"
+   "...."
+   ". myArea myArea ."
+   ". myArea myArea .";
+}
+
+#me {
+   grid-area: myArea;
+}
+
+#otherPlayer1 {
+   grid-area: area1;
+}
+#otherPlayer2 {
+   grid-area: area2;
+}
+#otherPlayer3 {
+   grid-area: area3;
+}
+#otherPlayer4 {
+   grid-area: area4;
+}
+
+
+.cardButton {
+   position: relative;
 }
