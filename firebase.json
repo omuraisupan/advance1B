@@ -12,12 +12,7 @@
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
-    ],
-    "redirects": [{
-      "source": "/",
-      "destination": "/Title.html",
-      "type": 301
-    }]
+    ]
   },
   "emulators": {
     "auth": {
@@ -27,10 +22,10 @@
       "port": 5001
     },
     "firestore": {
-      "port": 8079
+      "port": 8077
     },
     "database": {
-      "port": 9000
+      "port": 9001
     },
     "hosting": {
       "port": 5000
@@ -38,5 +33,8 @@
     "ui": {
       "enabled": true
     }
+  },
+  "functions": {
+    "source": "functions"
   }
 }

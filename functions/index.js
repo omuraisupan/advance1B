@@ -1,4 +1,4 @@
-const functions = require("firebase-functions");
+//const functions = require("firebase-functions");
 
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
@@ -8,6 +8,10 @@ const functions = require("firebase-functions");
 //   response.send("Hello from Firebase!");
 // });
 
-const test = require('./game_play');
+const GamePlay = require('./game_play');
 
-exports.test = test.test;
+exports.memberList = GamePlay.memberList;
+
+exports.memberList2 = GamePlay.memberList2;
+
+//exports.displayHand = GamePlay.displayHand;
