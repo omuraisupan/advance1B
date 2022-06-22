@@ -1,20 +1,11 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-app.js";
 import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-auth.js";
 import { getFunctions, httpsCallable, connectFunctionsEmulator } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-functions.js"
 
-const firebaseConfig = {
-  apiKey: "***************************",
-  authDomain: "***********************",
-  databaseURL: "**********************",
-  projectId: "************************",
-  storageBucket: "********************",
-  messagingSenderId: "****************",
-  appId: "****************************"
-};
+// firebaseのAPIキーをimport
+import { app } from "./config.js"
 
-const app = initializeApp(firebaseConfig);
 const auth = getAuth();
-const functions = getFunctions(app);
+const functions = getFunctions();
 connectFunctionsEmulator(functions, "localhost", 5001);
 const memberList = httpsCallable(functions, 'memberList');
 
