@@ -7,19 +7,26 @@ import { app } from "./config.js"
 const auth = getAuth();
 const functions = getFunctions();
 connectFunctionsEmulator(functions, "localhost", 5001);
-const memberList = httpsCallable(functions, 'memberList');
-
+const setMemberList = httpsCallable(functions, 'setMemberList');
+const gameStart = httpsCallable(functions, "gameStart");
 
 //デバッグ用
 signInAnonymously(auth)
   .then(() => {
-    console.log("ok");
+    console.log("auth ok");
+    setMemberList()
+      .then((result) => {
+        gameStart();
+      })
+      .catch((error) => {
+        console.log(error.code);
+      });
   })
   .catch((error) => {
     console.log(error.code);
-  })
+  });
 
-memberList()
+/*memberList()
   .then((result) => {
     const data = result.data;
     console.log(data.memberList[0]);
@@ -27,7 +34,7 @@ memberList()
   })
   .catch((error) => {
     console.log(error.code);
-  })
+  })*/
 
 //判定された役を表示
 //document.getElementById(checkHand).innerHTML = checkHand(_cards)

@@ -10,8 +10,8 @@
 
 const GamePlay = require('./game_play');
 
-exports.memberList = GamePlay.memberList;
+exports.setMemberList = GamePlay.setMemberList;
 
-exports.memberList2 = GamePlay.memberList2;
+exports.gameStart = GamePlay.gameStart
 
 //exports.displayHand = GamePlay.displayHand;

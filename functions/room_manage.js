@@ -37,7 +37,7 @@ module.exports = class RoomManage {
       const player_ = new Player(player, 10000, this._deck);
       this._playerList.push( player_ );
     }
-    this._playerList[Math.floor(Math.random() * 5)].changeTurn();
+    this._playerList[Math.floor(Math.random() * (memberList.length + 1))].changeTurn();
     console.log(this._playerList);
     console.log(this._deck);
   }

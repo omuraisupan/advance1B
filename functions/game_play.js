@@ -2,22 +2,24 @@ const functions = require("firebase-functions");
 const Player = require("./player");
 const RoomManage = require("./room_manage");
 
+let memberList = [];
+let isStart = false;
+
 //デバッグ用
 
-exports.memberList = functions.https.onCall((data, context) => {
-  const memberList = [ "taro", "jiro", "saburo", "shiro", "gorou" ];
-  const room = new RoomManage( memberList );
-  return {
-    memberList: room._playerList
+exports.setMemberList = functions.https.onCall((data, context) => {
+  memberList.push(context.auth.uid);
+  console.log(memberList);
+});
+
+exports.gameStart = functions.https.onCall((data, context) => {
+  if (!isStart) {
+    isStart = true;
+    console.log( memberList );
+    const room = new RoomManage( memberList );
   }
 });
 
-exports.memberList2 = functions.https.onRequest((req, res) => {
-  const memberList = [ "taro", "jiro", "saburo", "shiro", "gorou" ];
-  const room = new RoomManage( memberList );
-  res.send(room._playerList);
+exports.displayHand = functions.https.onCall((data, context) => {
+  const uid = context.auth.uid;
 });
-
-/*exports.displayHand = functions.https.onCall((data, context) => {
-
-});*/
