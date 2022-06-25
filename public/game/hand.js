@@ -215,5 +215,5 @@ export const hand = {
       }
     }
     return false;
-  },
+  }
 }

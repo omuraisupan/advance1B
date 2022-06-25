@@ -1,5 +1,16 @@
 import { hand } from "./hand.js"
 
+
+// 山札配列を作るための配列
+const suitList = [ "spade", "clover", "diamond", "heart" ];
+const numList = [
+  {num: 1}, {num: 2}, {num: 3}, {num: 4},
+  {num: 5}, {num: 6}, {num: 7}, {num: 8},
+  {num: 9}, {num: 10}, {num: 11}, {num: 12},
+  {num: 13}
+]
+const deckList = suitList.map( suit => numList.map( number => ({suit, ...number}))).flat();
+
 /* 6.19 omu
 
 6.19 コメント追加 (omu)
@@ -35,16 +46,25 @@ export class Player {
   コンストラクタです.プライベート変数の初期化を行います.
   上記の変数はいかに記述するメソッドで操作します.
   */
-  constructor( userID, chip, deck ) {
+
+  constructor( userID, chip ) {
     this._userID = userID;
     this._chip = chip;
     this._bedChip = 0;
-    this._cards = hand.cardInit( deck );
+    this._deck = this.deckInit();
+    this._cards = hand.cardInit( this._deck );
     this._riseCount = 1;
     this._drop = false;
     this._turn = false;
 
     //gameData.chip( this.userID, this.chip );
+  }
+
+  //使用する山札の生成.山札を初期状態にしてシャッフルする.
+  deckInit () {
+    let deck = [ ...deckList ];
+    deck.sort(()=> Math.random() - 0.5);
+    return deck;
   }
 
   /* 6.19 omu
