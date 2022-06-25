@@ -13,8 +13,10 @@
   <div id="players">
     <div id=me>
       <p>You</p>
+      <p>ターン<span id=ターン数></span></p>
       <p>持ちチップ10000<span id=持チップ変数ID></span></p>
       <p>賭けチップ1000<span id=賭けチップ変数ID></span></p>
+      <p><span id=checkHand></span></p>
       <ul>
         <button type="button" class="cardButton"><img src="img/card_back.png" width="82" height="120" alt=""></button>
         <button type="button" class="cardButton"><img src="img/card_back.png" width="82" height="120" alt=""></button>
@@ -22,7 +24,11 @@
         <button type="button" class="cardButton"><img src="img/card_back.png" width="82" height="120" alt=""></button>
         <button type="button" class="cardButton"><img src="img/card_back.png" width="82" height="120" alt=""></button>
       </ul>
-      
+      <ul>
+        <input type="number" id="betAmount">
+        <button type="submit">決定</button>
+      </ul>
+      <div>
       <p><span id=checkHand></span></p>
     </div>
   </div>
