@@ -6,7 +6,7 @@ card について
 などのオブジェクトの形式です.
 */
 
-module.exports = hand = {
+export const hand = {
   /* 6.19 omu
 
   6.19 引数にdeckを追加(omu)
