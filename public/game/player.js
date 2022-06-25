@@ -21,8 +21,9 @@ const deckList = suitList.map( suit => numList.map( number => ({suit, ...number}
 */
 export class Player {
 
-  /* 6.19 (omu)
+  /* 6.25 (omu)
 
+  6.25 turnをカウントに変更, changeTurn()を削除
   6.19 引数に deck を追加.cardInitの引数にdeckを入れる. (omu)
   6.19 コメント追加 (omu)
   ------------------------
@@ -34,13 +35,13 @@ export class Player {
   プライベート変数
   _userID:   string // userIDです.
   _chip:      int   // 持ちチップ数です.
-  _bedChip:   int   //ベッドしているチップ数です.
+  _betChip:   int   //ベッドしているチップ数です.
   _cards:   Array[ card, card, card, card, card ]
             // card: { suit: heart, num: 3 }などのオブジェクトの形式
             // 手札のカードです.
   _riseCount: int   // レイズ出来る残り回数です.
   _drop:      bool  // ドロップしたかどうかです.
-  _turn:      bool  // そのプレイヤーのターンかどうかです.
+  _turn:      int   // 経過ターン数
   ------------------------
 
   コンストラクタです.プライベート変数の初期化を行います.
@@ -50,12 +51,12 @@ export class Player {
   constructor( userID, chip ) {
     this._userID = userID;
     this._chip = chip;
-    this._bedChip = 0;
+    this._betChip = 0;
     this._deck = this.deckInit();
     this._cards = hand.cardInit( this._deck );
     this._riseCount = 1;
     this._drop = false;
-    this._turn = false;
+    this._turn = 1;
 
     //gameData.chip( this.userID, this.chip );
   }
@@ -65,6 +66,59 @@ export class Player {
     let deck = [ ...deckList ];
     deck.sort(()=> Math.random() - 0.5);
     return deck;
+  }
+
+  /* 6.25 omu
+
+  6.25 コメント作成 (omu)
+  -----------------------
+  player.checkhand()
+
+  arg: none
+  ret: string
+
+  -----------------------
+  手札の役を判定し、それに応じてチップ数を増やします.
+  ベットしているチップ数を0にします.
+  手札の役を返します.
+
+  */
+  checkHand() {
+    const handName = hand.checkHand (this._cards );
+    switch ( handName ) {
+      case "RoyalStraightFlush":
+        this._chip += this._betChip * 101;
+        break;
+      case "StraightFlush":
+        this._chip += this._betChip * 51;
+        break;
+      case "FourCard":
+        this._chip += this._betChip * 21;
+        break;
+      case "FullHouse":
+        this._chip += this._betChip * 11;
+        break;
+      case "Flush":
+        this._chip += this._betChip * 8;
+        break;
+      case "Straight":
+        this._chip += this._betChip * 6;
+        break;
+      case "ThreeCard":
+        this._chip += this._betChip * 4;
+        break;
+      case "TwoPair":
+        this._chip += this._betChip * 2;
+        break;
+      case "OnePair":
+        this._chip += this._betChip;
+        break;
+      case "NoPair":
+        break;
+      default:
+    }
+    this._betChip = 0;
+    return handName;
   }
 
   /* 6.19 omu
@@ -107,18 +161,18 @@ export class Player {
 
   6.19 コメント作成 (omu)
   -----------------------
-  player.getBedChip()
+  player.getBetChip()
 
   arg: none
-  ret: int // _bedChip
+  ret: int // _betChip
 
   -----------------------
-  プライベート変数の_bedChipを返します.
+  プライベート変数の_betChipを返します.
   ベッドしているチップ数です.
 
   */
-  getBedChip() {
-    return this._bedChip;
+  getBetChip() {
+    return this._betChip;
   }
 
   /* 6.19 omu
@@ -139,6 +193,24 @@ export class Player {
   */
   getCards() {
     return this._cards;
+  }
+
+  /* 6.25 omu
+
+  6.25 作成 (omu)
+  -----------------------
+  player.getTurn()
+
+  arg: none
+  ret: int // _turn
+
+  -----------------------
+  プライベート変数の_turnを返します.
+  ターン数です.
+
+  */
+  getTurn() {
+    return this._turn;
   }
 
   /* 6.19 omu
@@ -178,43 +250,23 @@ export class Player {
   }
 
 
-  /* 6.19 omu
+  /* 6.25 omu
 
+  6.25 nextTurn()に変更
   6.19 コメント作成 (omu)
   -----------------------
-  player.isTurn()
+  player.nextTurn()
 
   arg: none
-  ret: bool // !_turn
+  ret: _turn
 
   -----------------------
-  プライベート変数の_turnを返します.
+  次のターンにします.
   そのプレイヤーのターンかどうかです.
 
   */
-  isTurn() {
-    return this._turn;
-  }
-
-  /* 6.19 omu
-
-  6.19 コメント作成 (omu)
-  -----------------------
-  player.changeTurn()
-
-  arg: none
-  ret: bool // _turn
-
-  -----------------------
-  プライベート変数の_turnの反転を返します.
-  プライベート変数の_turnも反転させます.
-
-  プレイヤーのターンを変更したいときに利用してください.
-
-  */
-  changeTurn() {
-    this._turn = !this._turn;
-    return this._turn;
+  nextTurn() {
+    this._turn++;
   }
 
   /* 6.19 omu
@@ -231,8 +283,8 @@ export class Player {
 
   */
   bit( chip ) {
-    this._bedChip += chip;
-    this._chip -= chip;
+    this._betChip += Number(chip);
+    this._chip -= Number(chip);
   }
 
   /* 6.19 omu
@@ -251,7 +303,7 @@ export class Player {
   rise( chip ) {
     if (this._riseCount > 0) {
       this._riseCount--;
-      this._bedChip += chip;
+      this._betChip += chip;
       this._chip -= chip;
     } else {
       console.log("ERROR NO RISECOUNT LEFT");
