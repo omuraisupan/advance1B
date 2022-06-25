@@ -7,11 +7,3 @@
 //   functions.logger.info("Hello logs!", {structuredData: true});
 //   response.send("Hello from Firebase!");
 // });
-
-const GamePlay = require('./game_play');
-
-exports.setMemberList = GamePlay.setMemberList;
-
-exports.gameStart = GamePlay.gameStart
-
-//exports.displayHand = GamePlay.displayHand;
