@@ -362,7 +362,7 @@ export class Player {
   */
   exchange( card ) {
     this._cards = this._cards.filter( _card => _card != card );
-    this._cards.push( hand.deal(deck) );
+    this._cards.push( hand.deal(this._deck) );
     return this._cards;
   }
 

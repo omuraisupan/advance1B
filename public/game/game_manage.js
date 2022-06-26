@@ -5,11 +5,14 @@ const player = new Player("testuser", 1000);
 const turn = document.getElementById("turn");
 const chip = document.getElementById("chip");
 const hand = document.getElementById("hand");
-const card1 = document.getElementById("card1");
-const card2 = document.getElementById("card2");
-const card3 = document.getElementById("card3");
-const card4 = document.getElementById("card4");
-const card5 = document.getElementById("card5");
+const card = document.querySelectorAll(".card");
+const hold = document.querySelectorAll(".hold");
+const card1 = document.getElementById("1");
+const card2 = document.getElementById("2");
+const card3 = document.getElementById("3");
+const card4 = document.getElementById("4");
+const card5 = document.getElementById("5");
+const exchangeButtom = document.getElementById("exchangeButtom");
 const betChip = document.getElementById("betChip");
 const betAdd = document.getElementById("betAdd");
 const betButtom = document.getElementById("betButtom");
@@ -30,29 +33,23 @@ const showCard = (() => {
   card5.setAttribute("src", card5src);
 });
 
-let isHold1 = false;
-let isHold2 = false;
-let isHold3 = false;
-let isHold4 = false;
-let isHold5 = false;
-
-const changeHold = (() => {
-  if (card1.value == "true") {
-    card1.value = "false";
-    isHold1 = false;
-    card1.style.backgroundColor = "#b0c4de";
-  } else {
-    card1.value = "true";
-    isHold1 = true;
-    card1.style.backgroundColor = "#ffff00";
-  }
+card.forEach((target) => {
+  target.addEventListener("click", () => {
+    target.classList.toggle("hold");
+  });
 });
 
-card1.addEventListener("click", () => {
-  changeHold();
-  console.log(isHold1)
+exchangeButtom.addEventListener("click", () => {
+  const cards = player.getCards();
+  card.forEach((target) => {
+    if(target.classList.contains("hold")) {
+      console.log(cards[target.id-1])
+      player.exchange(cards[target.id-1]);
+    }
+  });
+  showCard();
+  console.log(player.getCards());
 });
-
 
 betButtom.addEventListener("click", () => {
   const bet = betAdd.value;

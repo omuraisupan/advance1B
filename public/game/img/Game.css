@@ -23,3 +23,11 @@ ul {
 #me {
    grid-area: myArea;
 }
+
+.card {
+   background-color: #b0c4de;
+}
+
+.hold {
+   background-color: #ffff00;
+}
