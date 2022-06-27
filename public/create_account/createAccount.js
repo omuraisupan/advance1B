@@ -1,7 +1,12 @@
-import { ref, set, getDatabase, onValue } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-database.js"
-import { app } from "./app.js"
+import { ref, set, getDatabase, get } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-database.js"
+import { app } from "../app.js"
 
-/* 6.18 kakishima
+const createAccount = document.getElementById("createAccount");
+
+/* 6.27 omu
+
+6.27 omu
+6.18 kakishima
 ------------------------
 arg : none
 ret : none
@@ -30,26 +35,26 @@ createAccount.addEventListener('click',(e) => {
   const _database = getDatabase(app);
   const _ref = ref(_database, '/users/' + _userID);
 
-  //console.log('userID = ' + _userID);
-  //console.log('password = ' + _password);
-  
-  const check = checkUserID(_userID);
-
-  if(passwordCheck(_password, _password2) == 1){
-    set(_ref, {
-      password: _password,
-      highScore: 0
-    })
-    .then(() => {
-      listOfUserID(_userID);
-      alert('createAccount success');
-    })
-    .catch((error) => {
-      alert('createAccount failed');
-    });
-  }
-});
-
+  get(_ref).then((snapshot) => {
+    if ( !snapshot.exists() && passwordCheck(_password, _password2) ){
+      set(_ref, {
+        password: _password,
+        highScore: 0
+      })
+      .then(() => {
+        //listOfUserID(_userID);
+        let url = new URL('./mainmenu', "http://localhost:5000");
+        url.searchParams.append('uid', _userID);
+        document.location.href = url;
+      })
+      .catch((error) => {
+        alert('createAccount failed');
+      });
+    } else if ( snapshot.exists() ) {
+      alert("既存のユーザIDです。変更してください")
+    }
+  })
+})
 
 /* 6.18 kakishima
 ------------------------
@@ -64,17 +69,15 @@ ret : 成功 => 1
 function passwordCheck(_password, _password2) {
   if (_password == _password2) {
     //成功
-    console.log('passcheck=t');
-    return 1;
+    console.log('passcheck=true');
+    return true;
   } else {
     //失敗
     alert('パスワード(再入力)が違います');
-    console.log('passcheck=f');
-    return 0;
+    console.log('passcheck=false');
+    return false;
   }
 }
-
-
 
 
 //未完----------------------------------------
@@ -86,26 +89,5 @@ function listOfUserID(_userID){
   const _ref = ref(_database, '/uidList/' + _userID);
   set(_ref, {
     userID: _userID
-  })
-}
-
-
-//既存のuserIDと重複してないか確認
-//userIDいれて値帰ってきたらerror
-function checkUserID(userID){
-  const _database = getDatabase(app);
-  const _ref = ref(_database, '/uidList/' + userID );
-  onValue(_ref, (snapshot) => {
-    const _data = snapshot.val();
-    const _tes = _data.userID;
-    console.log('tes = ' + _tes);
-    if(_tes != null){
-      //failed
-      alert('既存のユーザID');
-      return 0;
-    }else{
-      alert('使用可能なユーザID');
-      return 1;
-    }
   })
 }

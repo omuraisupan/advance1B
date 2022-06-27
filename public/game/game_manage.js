@@ -1,12 +1,15 @@
+import { app } from "../app.js"
+import { ref, update, get, getDatabase } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-database.js"
 import { Player } from "./player.js";
 
-const player = new Player("testuser", 1000);
+const uid = (new URL(document.location)).searchParams.get('uid');
+
+const player = new Player(uid, 1000);
 
 const turn = document.getElementById("turn");
 const chip = document.getElementById("chip");
 const hand = document.getElementById("hand");
 const card = document.querySelectorAll(".card");
-const hold = document.querySelectorAll(".hold");
 const card1 = document.getElementById("1");
 const card2 = document.getElementById("2");
 const card3 = document.getElementById("3");
@@ -75,8 +78,25 @@ betButtom.addEventListener("click", () => {
 const checkEnd = (() => {
   if (player.getTurn() > 10) {
     alert("ゲーム終了");
+    let isHighScore = false;
+    const db = getDatabase(app);
+    const _ref = ref(db, '/users/' + uid);
+    get(_ref).then((snapshot) => {
+      if (player.getChip() > snapshot.val().highScore) {
+        update(_ref, {
+          highScore: player.getChip()
+        })
+        isHighScore = true;
+      }
+    })
     betAdd.remove();
     betButtom.remove();
+    const score = document.getElementById('score');
+    if (isHighScore) {
+      score.textContent = "ハイスコア！" +  "スコア：" + player.getChip();
+    } else {
+      score.textContent = "スコア：" + player.getChip();
+    }
   } else {
     turn.textContent = player.getTurn();
     console.log(player.getTurn());

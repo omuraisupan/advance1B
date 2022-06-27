@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>ポーカー: アカウント作成</title>
+    <script type="module" src="createAccount.js"></script>
 </head>
 <br>
 <br>
@@ -16,23 +17,28 @@
                 <div>
                     <center>
                         <div>
-                            <input type="id" name="id" placeholder="ID">
+                            <input id="userID" type="text" name="id" placeholder="ID">
                         </div>
                         <br>
                         <div>
-                            <input type="password" name="pass" placeholder="Password">
+                            <input id="password" type="password" name="pass" placeholder="Password">
                             <br>
-                            <input type="password" name="pass" placeholder="Password再入力">
+                            <input id="password2" type="password" name="pass" placeholder="Password再入力">
                         </div>
                     </center>
                 </div>
                 <br>
                 <div>
                     <center>
-                        <button onckick="location.href='./poker_createAccount.html'">アカウント作成</button>
+                        <button id="createAccount">アカウント作成</button>
+                        <br>
+                        <br>
                     </center>
                 </div>
             </form>
+            <center>
+                <button onclick="location.href='../'">タイトルへ</button>
+            </center>
         </div>
     </body>
 </html>

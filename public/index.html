@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <title>ポーカー: タイトル</title>
-    <script type="text/javascript" src="Title.js"></script>
+    <script type="module" src="login.js"></script>
   </head>
 
   <header>
@@ -34,11 +34,11 @@
                 <div>
                     <center>
                         <div>
-                            <input type="text" id="user_id" placeholder="ID">
+                            <input id="userID" type="text" id="user_id" placeholder="ID">
                         </div>
                         <br>
                         <div>
-                            <input type="password" id="password" placeholder="Password">
+                            <input id="password" type="password" id="password" placeholder="Password">
                         </div>
                     </center>
                 </div>
@@ -47,14 +47,16 @@
                 <!--ログイン、アカウント作成ボタン-->
                 <div>
                 <center>
-                    <button id=loginButton onckick="location.href='./main_menu.html'">ログイン</button>
+                    <button id="login">ログイン</button>
                     <br>
                     <br>
                     <br>
-                    <button onckick="location.href='./create_account.html'">アカウント作成</button>
                 </center>
                 </div>
             </form>
+            <center>
+                <button  onclick="location.href='./create_account'">アカウント作成</button>
+            </center>
         </div>
     </body>
 </html>
