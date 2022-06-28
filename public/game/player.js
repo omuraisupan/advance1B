@@ -40,7 +40,7 @@ export class Player {
             // card: { suit: heart, num: 3 }などのオブジェクトの形式
             // 手札のカードです.
   _riseCount: int   // レイズ出来る残り回数です.
-  _drop:      bool  // ドロップしたかどうかです.
+  _exchangeCount:int// 残りの手札交換可能回数です
   _turn:      int   // 経過ターン数
   ------------------------
 
@@ -55,7 +55,7 @@ export class Player {
     this._deck = this.deckInit();
     this._cards = hand.cardInit( this._deck );
     this._riseCount = 1;
-    this._drop = false;
+    this._exchangeCount = 1;
     this._turn = 1;
 
     //gameData.chip( this.userID, this.chip );
@@ -213,45 +213,47 @@ export class Player {
     return this._turn;
   }
 
-  /* 6.19 omu
+  /* 6.28 omu
 
-  6.19 コメント作成 (omu)
+  6.28 作成 (omu)
   -----------------------
-  player.getRiseCount()
+  player.getExchangeCount()
 
   arg: none
-  ret: int // _riseCount
+  ret: int // _turn
 
   -----------------------
-  プライベート変数の_riseCountを返します.
-  レイズ出来る残り回数です.
-  
+  プライベート変数の_exchangeCountを返します.
+  ターン数です.
+
   */
-  getRiseCount() {
-    return this._riseCount;
+  getExchangeCount() {
+    return this._exchangeCount;
   }
 
-  /* 6.19 omu
+  /* 6.28 omu
 
-  6.19 コメント作成 (omu)
+  6.28 作成 (omu)
   -----------------------
-  player.isDrop()
+  player.decExchangeCount()
 
   arg: none
-  ret: bool // _drop
+  ret: int // _turn
 
   -----------------------
-  プライベート変数の_dropを返します.
-  ドロップしたかどうかです.
+  プライベート変数の_exchangeCountを1減らします.
+  ターン数です.
 
   */
-  isDrop() {
-    return this._drop;
+  decExchangeCount() {
+    this._exchangeCount--;
+    return this._exchangeCount;
   }
 
 
-  /* 6.25 omu
+  /* 6.28 omu
 
+  6.28 exchangeCount追加
   6.25 nextTurn()に変更
   6.19 コメント作成 (omu)
   -----------------------
@@ -266,6 +268,7 @@ export class Player {
 
   */
   nextTurn() {
+    this._exchangeCount = 1;
     this._turn++;
   }
 
@@ -285,64 +288,6 @@ export class Player {
   bit( chip ) {
     this._betChip += Number(chip);
     this._chip -= Number(chip);
-  }
-
-  /* 6.19 omu
-
-  6.19 コメント作成 (omu)
-  -----------------------
-  player.rise( chip )
-
-  arg: int // レイズしたチップ数です.
-  ret: none
-
-  -----------------------
-  指定したチップ数だけレイズします.
-
-  */
-  rise( chip ) {
-    if (this._riseCount > 0) {
-      this._riseCount--;
-      this._betChip += chip;
-      this._chip -= chip;
-    } else {
-      console.log("ERROR NO RISECOUNT LEFT");
-      return "ERROR"
-    }
-  }
-
-  /* 6.19 omu
-
-  6.19 コメント作成 (omu)
-  -----------------------
-  player.drop()
-
-  arg: none
-  ret: none
-
-  -----------------------
-  プレイヤーをドロップさせます.
-
-  */
-  drop() {
-    this._drop = true;
-  }
-
-  /* 6.19 omu
-
-  6.19 コメント作成 (omu)
-  -----------------------
-  player.check()
-
-  arg: none
-  ret: none
-
-  -----------------------
-  プレイヤーをチェックさせます.
-
-  */
-  check() {
-    this.bit(0);
   }
 
   /* 6.19 omu

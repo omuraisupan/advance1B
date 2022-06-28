@@ -8,33 +8,37 @@ const player = new Player(uid, 1000);
 
 const turn = document.getElementById("turn");
 const chip = document.getElementById("chip");
+const excount = document.getElementById("ex");
 const hand = document.getElementById("hand");
 const card = document.querySelectorAll(".card");
-const card1 = document.getElementById("1");
-const card2 = document.getElementById("2");
-const card3 = document.getElementById("3");
-const card4 = document.getElementById("4");
-const card5 = document.getElementById("5");
+const img1 = document.getElementById("img1");
+const img2 = document.getElementById("img2");
+const img3 = document.getElementById("img3");
+const img4 = document.getElementById("img4");
+const img5 = document.getElementById("img5");
 const exchangeButtom = document.getElementById("exchangeButtom");
 const betChip = document.getElementById("betChip");
 const betAdd = document.getElementById("betAdd");
 const betButtom = document.getElementById("betButtom");
 
 document.getElementById("userId").textContent = player.getUserID();
+excount.textContent = player.getExchangeCount();
 
 const showCard = (() => {
   const cards = player.getCards();
-  const card1src = "img/" + cards[0]["suit"] + cards[0]["num"] + ".png";
-  const card2src = "img/" + cards[1]["suit"] + cards[1]["num"] + ".png";
-  const card3src = "img/" + cards[2]["suit"] + cards[2]["num"] + ".png";
-  const card4src = "img/" + cards[3]["suit"] + cards[3]["num"] + ".png";
-  const card5src = "img/" + cards[4]["suit"] + cards[4]["num"] + ".png";
-  card1.setAttribute("src", card1src);
-  card2.setAttribute("src", card2src);
-  card3.setAttribute("src", card3src);
-  card4.setAttribute("src", card4src);
-  card5.setAttribute("src", card5src);
+  const img1src = "img/" + cards[0]["suit"] + cards[0]["num"] + ".png";
+  const img2src = "img/" + cards[1]["suit"] + cards[1]["num"] + ".png";
+  const img3src = "img/" + cards[2]["suit"] + cards[2]["num"] + ".png";
+  const img4src = "img/" + cards[3]["suit"] + cards[3]["num"] + ".png";
+  const img5src = "img/" + cards[4]["suit"] + cards[4]["num"] + ".png";
+  img1.setAttribute("src", img1src);
+  img2.setAttribute("src", img2src);
+  img3.setAttribute("src", img3src);
+  img4.setAttribute("src", img4src);
+  img5.setAttribute("src", img5src);
 });
+
+showCard();
 
 card.forEach((target) => {
   target.addEventListener("click", () => {
@@ -42,16 +46,22 @@ card.forEach((target) => {
   });
 });
 
+
 exchangeButtom.addEventListener("click", () => {
-  const cards = player.getCards();
-  card.forEach((target) => {
-    if(target.classList.contains("hold")) {
-      console.log(cards[target.id-1])
-      player.exchange(cards[target.id-1]);
-    }
-  });
-  showCard();
-  console.log(player.getCards());
+  if (player.getExchangeCount() > 0) {
+    const cards = player.getCards();
+    card.forEach((target) => {
+      if(target.classList.contains("hold")) {
+        console.log(cards[target.id-1])
+        player.exchange(cards[target.id-1]);
+        target.classList.toggle("hold");
+      }
+    });
+    showCard();
+    player.decExchangeCount();
+    console.log(player.getCards());
+  }
+  excount.textContent = player.getExchangeCount();
 });
 
 betButtom.addEventListener("click", () => {
@@ -99,6 +109,6 @@ const checkEnd = (() => {
     }
   } else {
     turn.textContent = player.getTurn();
-    console.log(player.getTurn());
+    showCard();
   }
 });
