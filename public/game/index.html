@@ -12,26 +12,27 @@
   <!--gridで位置調整-->
   <div id="players">
     <div id=me>
-      <p>Player:<span id="userId"></span></p>
-      <p>ターン<span id=turn>1</span></p>
-      <p>持ちチップ<span id=chip>1000</span></p>
-      <p>賭けチップ<span id=betChip>0</span></p>
+      <p>Player：<span id="userId"></span></p>
+      <p>ターン：<span id=turn>1</span></p>
+      <p>手札交換可能回数：<span id="ex"></span></p>
+      <p>持ちチップ数：<span id=chip>1000</span></p>
+      <p>賭けチップ数：<span id=betChip>0</span></p>
       <p><span id=checkHand></span></p>
       <ul>
-        <button class="card" id="1" type="button" class="cardButton">
-          <img src="img/card_back.png" width="82" height="120" alt="">
+        <button id="1"class="card" type="button" class="cardButton">
+          <img id="img1" width="164" height="240" alt="">
         </button>
-        <button class="card" id="2" type="button" class="cardButton">
-          <img src="img/card_back.png" width="82" height="120" alt="">
+        <button id="2" class="card" id="2" type="button" class="cardButton">
+          <img id="img2" width="164" height="240k" alt="">
         </button>
-        <button class="card" id="3" type="button" class="cardButton">
-          <img src="img/card_back.png" width="82" height="120" alt="">
+        <button id="3" class="card" id="3" type="button" class="cardButton">
+          <img id="img3" width="164" height="240" alt="">
         </button>
-        <button class="card" id="4" type="button" class="cardButton">
-          <img src="img/card_back.png" width="82" height="120" alt="">
+        <button id="4" class="card" id="4" type="button" class="cardButton">
+          <img id="img4" width="164" height="240" alt="">
         </button>
-        <button class="card" id="5" type="button" class="cardButton">
-          <img src="img/card_back.png" width="82" height="120" alt="">
+        <button id="5"class="card" id="5" type="button" class="cardButton">
+          <img id="img5" width="164" height="240" alt="">
         </button>
       </ul>
       <p><button id="exchangeButtom">手札交換</button></p>

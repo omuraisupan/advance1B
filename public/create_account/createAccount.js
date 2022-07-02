@@ -56,6 +56,7 @@ createAccount.addEventListener('click',(e) => {
   })
 })
 
+
 /* 6.18 kakishima
 ------------------------
 arg : _password = 設定予定のパスワード
@@ -68,9 +69,15 @@ ret : 成功 => 1
 
 function passwordCheck(_password, _password2) {
   if (_password == _password2) {
-    //成功
-    console.log('passcheck=true');
-    return true;
+    if(_password.length >= 6){
+      //成功
+      console.log('passcheck=t');
+      return true;
+    }else{
+      alert('パスワードが6文字未満です');
+      console.log('passcheck=f');
+      return false;
+    }
   } else {
     //失敗
     alert('パスワード(再入力)が違います');
@@ -78,7 +85,6 @@ function passwordCheck(_password, _password2) {
     return false;
   }
 }
-
 
 //未完----------------------------------------
 
