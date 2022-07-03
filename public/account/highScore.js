@@ -98,6 +98,16 @@ _userID2: 現時点で2位のユーザID
 _userID3: 現時点で3位のユーザID
 ------------------------
 全体のハイスコアを更新
+
+data
+  -ranking
+    -highScore1
+    -highScore2
+    -highScore3
+    -userID1
+    -userID2
+    -userID3
+をデータベースに追加する必要あり
 */
 
 function setHighScore(_highScore){
