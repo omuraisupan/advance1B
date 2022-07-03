@@ -10,7 +10,7 @@ ul {
    width: 41px;
    height: 60px;
 
-   background: url(card_back.png);
+   background: url(.img/card_back.png);
    background-size: cover
 }
 
@@ -25,7 +25,6 @@ ul {
 }
 
 .card {
-   background-color: #b0c4de;
 }
 
 .hold {

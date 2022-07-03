@@ -38,8 +38,8 @@
   color: #333;
   font-size: 18px;
   font-weight: 700;
-  background-color: #cccccc;
-  box-shadow: 0 5px 0 #aaaaaa;
+  background-color: #ff6e6e;
+  box-shadow: 0 5px 0 #eb0000;
   transition: 0.3s;
 }
 
@@ -55,5 +55,5 @@
 .buttonRed a:hover {
   transform: translateY(3px);
   text-decoration: none;
-  box-shadow: 0 2px 0 #aaaaaa;
+  box-shadow: 0 2px 0 #eb0000;
 }
