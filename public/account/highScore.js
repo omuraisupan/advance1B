@@ -1,8 +1,8 @@
-import { ref, set, onValue, getDatabase} from "https://www.gstatic.com/firebasejs/9.8.2/firebase-database.js"
+import { ref, set, getDatabase, get} from "https://www.gstatic.com/firebasejs/9.8.2/firebase-database.js"
 import { app } from "./app.js"
-let score = 0;
 
 /* 6.18 kakishima
+　 7.04 kaki onValue => get に変更
 
 ------------------------
 arg : none
@@ -30,11 +30,11 @@ export function inputHighScore(_highScore){
   const _userID = getParam("userID", _url);
   const _ref = ref(_database, '/users/' + _userID);        
         
-  onValue(_ref, (snapshot) => {
+  //onValue(_ref, (snapshot) => {
+  get(_ref).then((snapshot) => {
     const _data = snapshot.val();
     const _password = _data.password;
     const _highScore0 = parseInt(_data.highScore);
-    setHighScore(_highScore);
     if(_highScore0 < _highScore){
       set(_ref, {
         password: _password,
@@ -50,6 +50,7 @@ export function inputHighScore(_highScore){
       console.log("inputhighscore 更新なし");
     }
   });
+  setHighScore(_highScore);
 }
 //)
 
@@ -79,7 +80,7 @@ export function getParam(name, url) {
 
 
 /* 6.30 kakishima
-
+　 7.04 kaki onValue => get に変更
 ------------------------
 arg : _highScore = 入力されたハイスコア(ゲーム終了時のスコア)
 ret : none
@@ -98,23 +99,16 @@ _userID2: 現時点で2位のユーザID
 _userID3: 現時点で3位のユーザID
 ------------------------
 全体のハイスコアを更新
-
-data
-  -ranking
-    -highScore1
-    -highScore2
-    -highScore3
-    -userID1
-    -userID2
-    -userID3
-をデータベースに追加する必要あり
 */
 
+//setHighScore.addEventListener('click',(e) => {
+  //const _highScore = document.getElementById('highScore').value;
 function setHighScore(_highScore){
   let _highScore0 = _highScore;
   const _database = getDatabase(app);
   const _ref = ref(_database, '/data/' + 'ranking/');
-  onValue(_ref, (snapshot) => {
+  get(_ref).then((snapshot) => {
+  //onValue(_ref, (snapshot) => {
     const _url = window.location.href;
     let _userID0 = getParam("userID", _url);
     let _highScore1 = parseInt(snapshot.val().highScore1);
@@ -131,6 +125,7 @@ function setHighScore(_highScore){
     _change =_userID0;
     _userID0 = _userID3;
     _userID3 = _change;
+    //console.log("h0 = " + _highScore0 + " h3 = " + _highScore3);
       if(_highScore2 < _highScore3){
         _change = _highScore3;
         _highScore3 = _highScore2;
@@ -138,6 +133,7 @@ function setHighScore(_highScore){
         _change =_userID3;
         _userID3 = _userID2;
         _userID2 = _change;
+        //console.log("h2 = " + _highScore2 + " h3 = " + _highScore3);
         if(_highScore1 < _highScore2){
           _change = _highScore2;
           _highScore2 = _highScore1;
@@ -145,6 +141,7 @@ function setHighScore(_highScore){
           _change =_userID2;
           _userID2 = _userID1;
           _userID1 = _change;
+          //console.log("h1 = " + _highScore1 + " h2 = " + _highScore2);
         }
       }
     }
@@ -165,3 +162,4 @@ function setHighScore(_highScore){
     });
   });
 }
+//)

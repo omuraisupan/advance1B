@@ -1,8 +1,9 @@
-import { ref, onValue, getDatabase} from "https://www.gstatic.com/firebasejs/9.8.2/firebase-database.js"
+import { ref, getDatabase, get} from "https://www.gstatic.com/firebasejs/9.8.2/firebase-database.js"
 import { app } from "./app.js"
 import { getParam } from "./highScore.js"
 
 /* 7.03 kakishima
+　 7.04 kaki onValue => get に変更
 
 ------------------------
 arg : none
@@ -25,16 +26,13 @@ _html: 全体のハイアスコアを表示
 _html2: ログインしているユーザのユーザID・ハイスコアを表示
 ------------------------
 ウィンドウが更新された時、全体でのハイスコアとログインしているユーザのユーザID・ハイスコアを表示
-
-html側は
-<div id = "write"></div> で全体のハイスコア表示
-<div id = "write2"></div> でログインしているユーザのユーザID・ハイスコアを表示
 */
 
 window.onload = function writeHighScore(){
   const _database = getDatabase(app);
   const _ref = ref(_database, '/data/' + 'ranking/');
-  onValue(_ref, (snapshot) => {
+  get(_ref).then((snapshot) => {
+  //onValue(_ref, (snapshot) => {
     let _highScore1 = parseInt(snapshot.val().highScore1);
     let _userID1 = snapshot.val().userID1;
     let _highScore2 = parseInt(snapshot.val().highScore2);
@@ -51,7 +49,8 @@ window.onload = function writeHighScore(){
     const _url = window.location.href;
     const _userID = getParam("userID", _url);
     const _ref2 = ref(_database, '/users/' + _userID);
-    onValue(_ref2, (snapshot) => {
+    get(_ref2).then((snapshot) => {
+    //onValue(_ref2, (snapshot) => {
       const _highScore = parseInt(snapshot.val().highScore);
       var _html2 = "";
       _html2 += "YourUserID : " + _userID  + "<br>" + "YourHighScore : " + _highScore + "<br>";
