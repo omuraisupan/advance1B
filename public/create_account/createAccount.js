@@ -43,9 +43,7 @@ createAccount.addEventListener('click',(e) => {
       })
       .then(() => {
         //listOfUserID(_userID);
-        let url = new URL('./mainmenu', "http://localhost:5000");
-        /*ローカルでの動作確認用："http://localhost:5000"*/
-
+        let url = new URL('./mainmenu', document.location.protocol + document.location.host);
         url.searchParams.append('uid', _userID);
         document.location.href = url;
       })

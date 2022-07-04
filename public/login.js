@@ -35,9 +35,9 @@ login.addEventListener('click',(e) => {
       const userPW = data.password;
       if (_password == userPW) {
         //成功したら次の画面に移る
-        let url = new URL('./mainmenu', "http://localhost:5000");
-        /*ローカルでの動作確認用："http://localhost:5000"*/
-
+        //let url = new URL('./mainmenu', "http://localhost:5000");
+        
+        let url = new URL('./mainmenu', document.location.protocol + document.location.host);
         url.searchParams.append('uid', _userID);
         document.location.href = url;
       } else {

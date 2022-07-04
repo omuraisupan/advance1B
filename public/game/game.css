@@ -43,7 +43,6 @@ body {
    width: 1300px;
    padding: 120px;
    border: 5px solid #700669;
-   text-align: center;
    margin: 30px auto;
 
    
@@ -301,3 +300,26 @@ body {
    border-color: #c34ba9;
    color: #FFF;
  }
+
+ #mainmenu {
+  display: inline-block;
+  max-width: 1250px;
+  text-align: left;
+  border: 2px solid #c34ba9;
+  font-size: 16px;
+  color: #c34ba9;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: .4s;
+  position: relative;
+   top: 50px; 
+   left: 200px;
+}
+
+.btn-border:hover {
+  background-color: #c34ba9;
+  border-color: #c34ba9;
+  color: #FFF;
+}

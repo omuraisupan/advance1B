@@ -131,7 +131,6 @@ const checkEnd = (() => {
     } else {
       score.textContent = "スコア：" + player.getChip();
     }
-    mainmenu.textContent = "メインメニューに戻る";
 
   } else {
     turn.textContent = player.getTurn();
