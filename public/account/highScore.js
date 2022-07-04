@@ -1,5 +1,5 @@
 import { ref, set, getDatabase, get} from "https://www.gstatic.com/firebasejs/9.8.2/firebase-database.js"
-import { app } from "./app.js"
+import { app } from "../app.js"
 
 /* 6.18 kakishima
 　 7.04 kaki onValue => get に変更
@@ -27,7 +27,7 @@ _highScore0: 現時点でのハイスコア
 export function inputHighScore(_highScore){
   const _database = getDatabase(app);
   const _url = window.location.href; //URLの取得
-  const _userID = getParam("userID", _url);
+  const _userID = getParam("uid", _url);
   const _ref = ref(_database, '/users/' + _userID);        
         
   //onValue(_ref, (snapshot) => {
@@ -110,7 +110,7 @@ function setHighScore(_highScore){
   get(_ref).then((snapshot) => {
   //onValue(_ref, (snapshot) => {
     const _url = window.location.href;
-    let _userID0 = getParam("userID", _url);
+    let _userID0 = getParam("uid", _url);
     let _highScore1 = parseInt(snapshot.val().highScore1);
     let _userID1 = snapshot.val().userID1;
     let _highScore2 = parseInt(snapshot.val().highScore2);
