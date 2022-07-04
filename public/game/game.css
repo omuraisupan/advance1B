@@ -4,6 +4,9 @@ ul {
 
 #me {
    font-size: 20px
+   position: relative;
+   top: 10px;
+   left:  20px;
 }
 
 .oPC1-1 {
@@ -22,6 +25,7 @@ ul {
 
 #me {
    grid-area: myArea;
+   font-size: 30px;
 }
 
 .card {
@@ -30,3 +34,109 @@ ul {
 .hold {
    background-color: #ffff00;
 }
+p{
+   color: rgb(128, 0, 121);
+}
+body {
+   background: #013f11;
+   font-family: 'Sacramento', cursive;
+   width: 1300px;
+   padding: 120px;
+   border: 5px solid #700669;
+   text-align: center;
+   margin: 30px auto;
+
+   
+   
+ }
+ .bg_pattern {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100vw;
+   height: 100vh;
+   background-color: #ffe9a7;
+   opacity: 0.4;
+   z-index: -1;
+ }
+
+ body {
+   background-color: rgb(224, 78, 230);
+ }
+ .star-kirakira {
+    position: relative;
+    height: 200px;
+    width: 200px;
+    background-color: #fff;
+    animation: anim-star-kirakira 1s infinite linear;
+ }
+ .star-kirakira:before {
+    content: '';
+    background-color: #fff;
+    display: block;
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    border-radius: 50%;
+    margin: -25px 0 0 -25px;
+    box-shadow: 0 0 30px 20px #fff;
+    z-index: 100;
+ }
+ .star-kirakira.is-small {
+    position: absolute;
+    left: 60px;
+    top: 90px;
+    animation: anim-star-kirakira-small 1s infinite linear;
+ }
+ .star-kirakira__path:before,
+ .star-kirakira__path:after {
+    background-color: rgb(224, 78, 230);
+    position: absolute;
+    content: '';
+    display: block;
+    height: 100px;
+    width: 100px;
+    box-sizing: border-box;
+ }
+ .star-kirakira__path.is-left:before {
+    top: 100px;
+    left: 0px;
+    border-right: 1px solid #fff;
+    /* border-top: 1px solid #fff; */
+    border-top-right-radius: 50%;
+ }
+ .star-kirakira__path.is-left:after {
+    top: 0px;
+    left: 0px;
+    border-bottom: 1px solid #fff;
+    /* border-right: 1px solid #fff; */
+    border-bottom-right-radius: 50%;
+ }
+ .star-kirakira__path.is-right:before {
+    top: 100px;
+    left: 100px;
+    border-top: 1px solid #fff;
+    /* border-left: 1px solid #fff; */
+    border-top-left-radius: 50%;
+ }
+ .star-kirakira__path.is-right:after {
+    top: 0px;
+    left: 100px;
+    border-left: 1px solid #fff;
+    /* border-bottom: 1px solid #fff; */
+    border-bottom-left-radius: 50%;
+ }
+ 
+ 
+ @keyframes anim-star-kirakira {
+    0%   { transform: scale(1);}
+    50%  { transform: scale(0.5);}
+    100% { transform: scale(1);}
+ }
+ @keyframes anim-star-kirakira-small {
+    0%   { transform: scale(0.3);}
+    50%  { transform: scale(0.1);}
+    100% { transform: scale(0.3);}
+ }
