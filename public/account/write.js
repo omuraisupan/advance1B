@@ -1,4 +1,4 @@
-import { ref, getDatabase, get} from "https://www.gstatic.com/firebasejs/9.8.2/firebase-database.js"
+import { ref, getDatabase, get, onValue} from "https://www.gstatic.com/firebasejs/9.8.2/firebase-database.js"
 import { app } from "./app.js"
 import { getParam } from "./highScore.js"
 
@@ -31,8 +31,8 @@ _html2: ログインしているユーザのユーザID・ハイスコアを表�
 window.onload = function writeHighScore(){
   const _database = getDatabase(app);
   const _ref = ref(_database, '/data/' + 'ranking/');
-  get(_ref).then((snapshot) => {
-  //onValue(_ref, (snapshot) => {
+  //get(_ref).then((snapshot) => {
+  onValue(_ref, (snapshot) => {
     let _highScore1 = parseInt(snapshot.val().highScore1);
     let _userID1 = snapshot.val().userID1;
     let _highScore2 = parseInt(snapshot.val().highScore2);
