@@ -41,7 +41,8 @@ export class Player {
             // 手札のカードです.
   _riseCount: int   // レイズ出来る残り回数です.
   _exchangeCount:int// 残りの手札交換可能回数です
-  _turn:      int   // 経過ターン数
+  _turn:      int   // 経過ターン数.
+  _bet:     bool  // ベット済みかどうか.
   ------------------------
 
   コンストラクタです.プライベート変数の初期化を行います.
@@ -57,6 +58,7 @@ export class Player {
     this._riseCount = 1;
     this._exchangeCount = 1;
     this._turn = 1;
+    this._bet = false;
 
     //gameData.chip( this.userID, this.chip );
   }
@@ -175,6 +177,40 @@ export class Player {
     return this._betChip;
   }
 
+  /* 7.05 omu
+
+  7.05 作成 (omu)
+  -----------------------
+  player.doBet()
+
+  arg: none
+  ret: none
+
+  -----------------------
+  プライベート変数の_isBetをtrueにします.
+
+  */
+  doBet() {
+    this._bet = true;
+  }
+
+  /* 7.05 omu
+
+  7.05 作成 (omu)
+  -----------------------
+  player.isBet()
+
+  arg: none
+  ret: bool
+
+  -----------------------
+  プライベート変数の_betを返します
+
+  */
+  isBet() {
+    return this._bet
+  }
+
   /* 6.19 omu
 
   6.19 コメント作成 (omu)
@@ -251,8 +287,9 @@ export class Player {
   }
 
 
-  /* 6.28 omu
+  /* 7.04 omu
 
+  7.04 _isBetをfalseにする処理を追加
   6.28 exchangeCount追加
   6.25 nextTurn()に変更
   6.19 コメント作成 (omu)
@@ -270,6 +307,7 @@ export class Player {
   nextTurn() {
     this._exchangeCount = 1;
     this._turn++;
+    this._bet = false;
   }
 
   /* 6.19 omu

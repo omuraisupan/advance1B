@@ -20,6 +20,7 @@ const exchangeButtom = document.getElementById("exchangeButtom");
 const betChip = document.getElementById("betChip");
 const betAdd = document.getElementById("betAdd");
 const betButtom = document.getElementById("betButtom");
+const nextButtom = document.getElementById("nextButtom");
 
 document.getElementById("userId").textContent = player.getUserID();
 excount.textContent = player.getExchangeCount();
@@ -48,42 +49,59 @@ card.forEach((target) => {
 
 
 exchangeButtom.addEventListener("click", () => {
-  if (player.getExchangeCount() > 0) {
-    const cards = player.getCards();
-    card.forEach((target) => {
-      if(target.classList.contains("hold")) {
-        console.log(cards[target.id-1])
-        player.exchange(cards[target.id-1]);
-        target.classList.toggle("hold");
-      }
-    });
-    showCard();
-    player.decExchangeCount();
-    console.log(player.getCards());
+  if (player.isBet()) {
+    if (player.getExchangeCount() > 0) {
+      const cards = player.getCards();
+      card.forEach((target) => {
+        if(target.classList.contains("hold")) {
+          console.log(cards[target.id-1])
+          player.exchange(cards[target.id-1]);
+          target.classList.toggle("hold");
+        }
+      });
+      showCard();
+      player.decExchangeCount();
+      console.log(player.getCards());
+      excount.textContent = player.getExchangeCount();
+    } else {
+      alert("もう手札交換出来ません！")
+    }
+  } else {
+    alert("ビットしてから手札交換をしてください！")
   }
-  excount.textContent = player.getExchangeCount();
 });
 
 betButtom.addEventListener("click", () => {
   const bet = betAdd.value;
-  if (bet < 10 || player.getChip() < bet) {
-    alert("ビットするチップ数が有効ではありません！")
+  if (!player.isBet()) {
+    if (bet < 10 || player.getChip() < bet) {
+      alert("ビットするチップ数が有効ではありません！")
+    } else {
+      player.bit(betAdd.value);
+  
+      player.doBet();
+      chip.textContent = player.getChip();
+      betChip.textContent = player.getBetChip();
+  
+      betAdd.value = '';
+    }
   } else {
-    player.bit(betAdd.value);
-
-    hand.textContent = player.checkHand();
-    chip.textContent = player.getChip();
-    betChip.textContent = player.getBetChip();
-
-    const deck = player.deckInit();
-    player.cardInit( deck );
-
-    betAdd.value = '';
-
-    player.nextTurn();
-    checkEnd();
+    alert("既にビットしています！")
   }
 });
+
+nextButtom.addEventListener("click", () => {
+  hand.textContent = player.checkHand();
+
+  const deck = player.deckInit();
+  player.cardInit( deck );
+
+  chip.textContent = player.getChip();
+  betChip.textContent = player.getBetChip();
+
+  player.nextTurn();
+  checkEnd();
+})
 
 const checkEnd = (() => {
   if ((player.getTurn() > 10)||(player.getChip() < 10) ){
