@@ -2,3 +2,4 @@
 *.log
 database.rules.json
 firestore.rules
+public/game/musics

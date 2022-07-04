@@ -4,6 +4,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.2/firebase
 
 //各自変える
 const firebaseConfig = {
+
 };
 
 //ここまで

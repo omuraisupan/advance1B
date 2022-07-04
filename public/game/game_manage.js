@@ -86,7 +86,7 @@ betButtom.addEventListener("click", () => {
 });
 
 const checkEnd = (() => {
-  if ((player.getTurn() > 10)||(player.getChip()<=0) ){
+  if ((player.getTurn() > 10)||(player.getChip() < 10) ){
     alert("ゲーム終了");
     let isHighScore = false;
     const db = getDatabase(app);
