@@ -21,6 +21,7 @@ const betChip = document.getElementById("betChip");
 const betAdd = document.getElementById("betAdd");
 const betButtom = document.getElementById("betButtom");
 const nextButtom = document.getElementById("nextButtom");
+const mainmenu = document.getElementById('mainmenu');
 
 document.getElementById("userId").textContent = player.getUserID();
 excount.textContent = player.getExchangeCount();
@@ -103,6 +104,11 @@ nextButtom.addEventListener("click", () => {
   checkEnd();
 })
 
+mainmenu.addEventListener("click", () => {
+  const uid = (new URL(document.location)).searchParams.get('uid');
+  document.location.href = '../mainmenu?uid=' + uid;
+})
+
 const checkEnd = (() => {
   if ((player.getTurn() > 10)||(player.getChip() < 10) ){
     alert("ゲーム終了");
@@ -125,6 +131,8 @@ const checkEnd = (() => {
     } else {
       score.textContent = "スコア：" + player.getChip();
     }
+    mainmenu.textContent = "メインメニューに戻る";
+
   } else {
     turn.textContent = player.getTurn();
     showCard();
