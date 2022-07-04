@@ -140,3 +140,164 @@ body {
     50%  { transform: scale(0.1);}
     100% { transform: scale(0.3);}
  }
+ #play {
+   color: rgb(255, 255, 255);
+   background: #b904ad;
+   width: 200px;
+   position: relative;
+   top: 950px; 
+   left: 1px;
+ }
+
+ #volume-up {
+   color: rgb(255, 255, 255);
+   background: #b904ad;
+   width: 40px;
+   position: relative;
+   top: 924px; 
+   left: 175px;
+ }
+
+ #volume-down {
+   color: rgb(255, 255, 255);
+   background: #b904ad;
+   width: 40px;
+   position: relative;
+   top: 924px; 
+   left: 171px;
+ }
+ #mute {
+   color: rgb(255, 255, 255);
+   background: #b904ad;
+   width: 80px;
+   position: relative;
+   top: 924px; 
+   left: 168px;
+ }
+ #btn_previous {
+   color: rgb(255, 255, 255);
+   background: #b904ad;
+   width: 80px;
+   position: relative;
+   top: 898px; 
+   left: 400px;
+ }
+ #btn_back {
+   color: rgb(255, 255, 255);
+   background: #b904ad;
+   width: 80px;
+   position: relative;
+   top: 898px; 
+   left: 396px;
+ }
+ #btn_forward {
+   color: rgb(255, 255, 255);
+   background: #b904ad;
+   width: 80px;
+   position: relative;
+   top: 898px; 
+   left: 393px;
+ }
+ #btn_after {
+   color: rgb(255, 255, 255);
+   background: #b904ad;
+   width: 80px;
+   position: relative;
+   top: 898px; 
+   left: 390px;
+ }
+ #timeviewr {
+   color: rgb(255, 255, 255);
+   background-color: rgb(224, 78, 230);
+   width: 80px;
+   position: relative;
+   top: 898px; 
+   left: 390px;
+ }
+ 
+ .container {
+   font-family: "Yu Gothic", YuGothic, Verdana, 'Hiragino Kaku Gothic ProN','Hiragino Kaku Gothic Pro', 'ヒラギノ角ゴ Pro W3', 'メイリオ', Meiryo, sans-serif;
+   text-align: center;
+   padding-top: 40px;
+ }
+ 
+ 
+ /* ここから下がボタンのCSS　*/
+ #betButtom {
+   display: inline-block;
+   max-width: 2500px;
+   text-align: left;
+   border: 4px solid #c34ba9;
+   font-size: 32px;
+   color: #c34ba9;
+   text-decoration: none;
+   font-weight: bold;
+   padding: 16px 32px;
+   border-radius: 8px;
+   transition: .8s;
+ }
+ 
+ .btn-border:hover {
+   background-color: #c34ba9;
+   border-color: #c34ba9;
+   color: #FFF;
+ }
+ #nextButtom {
+   display: inline-block;
+   max-width: 2500px;
+   text-align: left;
+   border: 4px solid #c34ba9;
+   font-size: 32px;
+   color: #c34ba9;
+   text-decoration: none;
+   font-weight: bold;
+   padding: 16px 32px;
+   border-radius: 8px;
+   transition: .8s;
+ }
+ 
+ .btn-border:hover {
+   background-color: #c34ba9;
+   border-color: #c34ba9;
+   color: #FFF;
+ }
+
+ #betAdd {
+   display: inline-block;
+   max-width: 2500px;
+   text-align: left;
+   border: 4px solid #c34ba9;
+   font-size: 32px;
+   color: #c34ba9;
+   text-decoration: none;
+   font-weight: bold;
+   padding: 16px 32px;
+   border-radius: 8px;
+   transition: .8s;
+ }
+ 
+ .btn-border:hover {
+   background-color: #c34ba9;
+   border-color: #c34ba9;
+   color: #FFF;
+ }
+
+ #exchangeButtom {
+   display: inline-block;
+   max-width: 2500px;
+   text-align: left;
+   border: 4px solid #c34ba9;
+   font-size: 32px;
+   color: #c34ba9;
+   text-decoration: none;
+   font-weight: bold;
+   padding: 16px 32px;
+   border-radius: 8px;
+   transition: .8s;
+ }
+ 
+ .btn-border:hover {
+   background-color: #c34ba9;
+   border-color: #c34ba9;
+   color: #FFF;
+ }
