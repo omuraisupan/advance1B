@@ -1,6 +1,7 @@
 import { app } from "../app.js"
 import { ref, update, get, getDatabase } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-database.js"
 import { Player } from "./player.js";
+import { setHighScore } from "../account/highScore.js";
 
 const uid = (new URL(document.location)).searchParams.get('uid');
 
@@ -123,6 +124,7 @@ const checkEnd = (() => {
         isHighScore = true;
       }
     })
+    setHighScore(player.getChip());
     betAdd.remove();
     betButtom.remove();
     const score = document.getElementById('score');

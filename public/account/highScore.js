@@ -103,7 +103,7 @@ _userID3: 現時点で3位のユーザID
 
 //setHighScore.addEventListener('click',(e) => {
   //const _highScore = document.getElementById('highScore').value;
-function setHighScore(_highScore){
+export function setHighScore(_highScore){
   let _highScore0 = _highScore;
   const _database = getDatabase(app);
   const _ref = ref(_database, '/data/' + 'ranking/');
