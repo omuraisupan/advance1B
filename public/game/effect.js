@@ -3,6 +3,8 @@
 // クリック時の効果音をつけるプログラムである   
 // ワンクリック対応
 
+// 2022/07/06 ダブルクリック時にも音が出るよう修正
+
 // idの取得を行う
 const exchangeButtom = document.getElementById('exchangeButtom'); // 手札交換
 const betButtom = document.getElementById('betButtom'); // ビットする
