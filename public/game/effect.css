@@ -1,0 +1,30 @@
+.btn {
+    display:block;
+    box-shadow:0 5px 0 rgb(218, 162, 215);
+    text-decoration: none;
+    font-weight:bold;
+    cursor: pointer;
+
+}
+
+.btn:hover {
+    box-shadow:none;
+    position:relative;
+    top:5px;
+
+}
+
+.btn_mini {
+    cursor: pointer;
+}
+
+.btn_mini:hover {
+    background-color: #d8c0d3;
+    border-color: #c34ba9;
+    color: rgb(0, 0, 0);
+}
+
+.card:hover {
+    cursor: pointer;
+    filter: opacity(40%);
+}

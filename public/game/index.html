@@ -5,6 +5,7 @@
   <meta charaset="UTF-8">
   <title>ポーカー: プレイ画面</title>
   <link rel="stylesheet" href="./game.css">
+  <link rel="stylesheet" href="./effect.css">
   <script type="module" src="./game_manage.js"></script>
 </head>
 
@@ -34,17 +35,17 @@
           <img id="img5" width="164" height="240" alt="">
         </button>
       </ul>
-      <p><button id="exchangeButtom">手札交換</button></p>
+      <p><button id="exchangeButtom" class="btn">手札交換</button></p>
       <p><span id=hand></span></p>
       <ul>
         <input type="number" id="betAdd" step="10">
-        <button type="submit" id="betButtom">ビットする</button>
+        <button type="submit" id="betButtom" class="btn">ビットする</button>
       </ul>
       <ul>
-        <button type="submit" id="nextButtom">次のターン</button>
+        <button type="submit" id="nextButtom" class="btn">次のターン</button>
       </ul>
       <div>
-      <p><span id="score"></span><button id="mainmenu">メインメニューに戻る</button></p>
+      <p><span id="score"></span><button id="mainmenu" class="btn">メインメニューに戻る</button></p>
       <div class="star-kirakira">
         <div class="star-kirakira__path is-right"></div>
         <div class="star-kirakira__path is-left"></div>
@@ -56,26 +57,27 @@
      
     </div>
   </div>
+  <script src="effect.js"></script>
 
   <div class="container">
     <div>
       <!-- 再生ボタン -->
-      <button id="play">再生</button><!-- #play -->
+      <button id="play" class="btn_mini">再生</button><!-- #play -->
     </div>
     <div id="seekbar"></div>
     <div>
       <!-- 音量ボタン -->
-      <button id="volume-up">＋</button><!-- #volume-up -->
-      <button id="volume-down">－</button><!-- #volume-down -->
+      <button id="volume-up" class="btn_mini">＋</button><!-- #volume-up -->
+      <button id="volume-down" class="btn_mini">－</button><!-- #volume-down -->
       <!-- ミュートボタン -->
-      <button id="mute">ミュート</button><!-- .btn btn-warning -->
+      <button id="mute" class="btn_mini">ミュート</button><!-- .btn btn-warning -->
     </div>
     <div>
       <!-- スキップ/巻き戻しボタン -->
-      <button id="btn_previous">前の曲へ</button>
-      <button id="btn_back">10秒前</button>
-      <button id="btn_forward">10秒後</button>
-      <button id="btn_after">次の曲へ</button>
+      <button id="btn_previous" class="btn_mini">前の曲へ</button>
+      <button id="btn_back" class="btn_mini">10秒前</button>
+      <button id="btn_forward" class="btn_mini">10秒後</button>
+      <button id="btn_after" class="btn_mini">次の曲へ</button>
     </div>
     <div class="timeviewr" id='timeviewr'>00:00:00</div>
   </div><!-- .container -->
