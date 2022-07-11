@@ -27,6 +27,16 @@ const mainmenu = document.getElementById('mainmenu');
 document.getElementById("userId").textContent = player.getUserID();
 excount.textContent = player.getExchangeCount();
 
+/* 7.12 omu
+
+7.12 コメント作成 (omu)
+-----------------------
+showCard()
+
+-----------------------
+手札を描画します
+
+*/
 const showCard = (() => {
   const cards = player.getCards();
   const img1src = "img/" + cards[0]["suit"] + cards[0]["num"] + ".png";
@@ -41,18 +51,32 @@ const showCard = (() => {
   img5.setAttribute("src", img5src);
 });
 
+// 手札を描画（初期処理）
 showCard();
 
+// クリックしたら交換するフラグを付けます
 card.forEach((target) => {
   target.addEventListener("click", () => {
     target.classList.toggle("hold");
   });
 });
 
-
+/* 7.12 omu
+  
+  7.12 コメント作成(omu)
+  ------------------------
+  手札交換ボタンの処理
+  ------------------------
+*/
 exchangeButtom.addEventListener("click", () => {
+
+  // ベット済みでなければエラーメッセージ
   if (player.isBet()) {
+
+    // 手札交換回数が残ってなければエラーメッセージ
     if (player.getExchangeCount() > 0) {
+
+      // 交換フラグが付いたカードを交換
       const cards = player.getCards();
       card.forEach((target) => {
         if(target.classList.contains("hold")) {
@@ -61,58 +85,135 @@ exchangeButtom.addEventListener("click", () => {
           target.classList.toggle("hold");
         }
       });
+
+      // 新しい手札を描画
       showCard();
+
+      // 手札交換回数を 1減らす
       player.decExchangeCount();
       console.log(player.getCards());
+
+      // 手札交換回数を再表示
       excount.textContent = player.getExchangeCount();
     } else {
+
+      // 手札交換回数が残ってないのでエラーメッセージ
       alert("もう手札交換出来ません！")
     }
   } else {
+
+    // ベット済みでないのでエラーメッセージ
     alert("ビットしてから手札交換をしてください！")
   }
 });
 
+
+/* 7.12 omu
+
+  7.12 コメント作成(omu)
+  ------------------------
+  ベットボタンの処理
+  ------------------------
+*/
 betButtom.addEventListener("click", () => {
   const bet = betAdd.value;
+
+  // ベット済みならエラーメッセージ
   if (!player.isBet()) {
+
+    // ビットするチップ数 < 10 or 持ちチップ数以上に賭けていたらエラーメッセージ
     if (bet < 10 || player.getChip() < bet) {
+
+      // ビットできないのでエラーメッセージ
       alert("ビットするチップ数が有効ではありません！")
     } else {
+      // 主処理
+
+      // ビットさせる
       player.bit(betAdd.value);
-  
+
       player.doBet();
+
+      // チップ数を再表示
       chip.textContent = player.getChip();
       betChip.textContent = player.getBetChip();
   
       betAdd.value = '';
     }
   } else {
+
+    // ベット済みなのでエラーメッセージ
     alert("既にビットしています！")
   }
 });
 
+
+/* 7.12 omu
+  
+  7.12 コメント作成(omu)
+  ------------------------
+  次のターンの処理
+  ------------------------
+*/
 nextButtom.addEventListener("click", () => {
-  hand.textContent = player.checkHand();
 
-  const deck = player.deckInit();
-  player.cardInit( deck );
+  // ベット済みなら処理をする
+  if (player.isBet()) {
 
-  chip.textContent = player.getChip();
-  betChip.textContent = player.getBetChip();
+    // 手札の役判定
+    hand.textContent = player.checkHand();
 
-  player.nextTurn();
-  checkEnd();
+    // 手札・デッキを初期化
+    const deck = player.deckInit();
+    player.cardInit( deck );
+    
+    // チップの処理
+    chip.textContent = player.getChip();
+    betChip.textContent = player.getBetChip();
+
+    // 次のターンのためにplayerオブジェクトのメソッド呼び出し
+    player.nextTurn();
+
+    // 終了判定
+    checkEnd();
+  } else {
+
+    // ベットしてなければエラーメッセージ
+    alert("ビットしてください！");
+  }
 })
 
+/*  7.12 omu
+
+  7.12 コメント作成(omu)
+  ------------------------
+  メインメニューに戻るボタンの処理
+  ------------------------
+
+  メインメニューに戻ります
+*/
 mainmenu.addEventListener("click", () => {
   const uid = (new URL(document.location)).searchParams.get('uid');
   document.location.href = '../mainmenu?uid=' + uid;
 })
 
+/* 7.12 omu
+
+7.12 コメント作成 (omu)
+-----------------------
+checkEnd()
+
+-----------------------
+ゲーム終了判定・ゲーム終了処理を行います。
+
+*/
 const checkEnd = (() => {
+
+  // ターン数 > 10 or 持ちチップ数 < 10　なら終了
   if ((player.getTurn() > 10)||(player.getChip() < 10) ){
     alert("ゲーム終了");
+
+    // ハイスコア更新処理
     let isHighScore = false;
     const db = getDatabase(app);
     const _ref = ref(db, '/users/' + uid);
@@ -125,8 +226,14 @@ const checkEnd = (() => {
       }
     })
     setHighScore(player.getChip());
+
+    // ゲーム中のボタンを削除
     betAdd.remove();
     betButtom.remove();
+    nextButtom.remove();
+    exchangeButtom.remove();
+
+    // スコアを表示
     const score = document.getElementById('score');
     if (isHighScore) {
       score.textContent = "ハイスコア！" +  "スコア：" + player.getChip();

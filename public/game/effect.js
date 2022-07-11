@@ -19,12 +19,12 @@ const card5 =document.getElementById('5');
 
 
 // ボタンの効果音を追加
-let buttonAudio_file = 'クリック.mp3';
+let buttonAudio_file = 'musics/クリック.mp3';
 const buttonAudio = new Audio(buttonAudio_file);
 buttonAudio.volume = 0.3;
 
 //カードの効果音を追加
-let cardAudio_file = 'カードをめくる.mp3';
+let cardAudio_file = 'musics/カードをめくる.mp3';
 const cardAudio = new Audio(cardAudio_file);
 cardAudio.volume = 0.3;
 
