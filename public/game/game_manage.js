@@ -121,8 +121,8 @@ betButtom.addEventListener("click", () => {
   // ベット済みならエラーメッセージ
   if (!player.isBet()) {
 
-    // ビットするチップ数 < 10 or 持ちチップ数以上に賭けていたらエラーメッセージ
-    if (bet < 10 || player.getChip() < bet) {
+    // ビットするチップ数 < 100 or 持ちチップ数以上に賭けていたらエラーメッセージ
+    if (bet < 100 || player.getChip() < bet) {
 
       // ビットできないのでエラーメッセージ
       alert("ビットするチップ数が有効ではありません！")
@@ -209,8 +209,8 @@ checkEnd()
 */
 const checkEnd = (() => {
 
-  // ターン数 > 10 or 持ちチップ数 < 10　なら終了
-  if ((player.getTurn() > 10)||(player.getChip() < 10) ){
+  // ターン数 > 100 or 持ちチップ数 < 10　なら終了
+  if ((player.getTurn() > 10)||(player.getChip() < 100) ){
     alert("ゲーム終了");
 
     // ハイスコア更新処理
