@@ -366,4 +366,38 @@ export class Player {
   cardInit( deck ) {
     this._cards = hand.cardInit( deck );
   }
+
+  /* テスト用スタブ　*/
+
+  // ロイヤルストレートフラッシュテスト用スタブ
+  doRoyalStraightFlush() {
+    this._cards = [
+      {suit: "heart", num: 1},
+      {suit: "heart", num: 10},
+      {suit: "heart", num: 11},
+      {suit: "heart", num: 12},
+      {suit: "heart", num: 13}
+    ]
+  }
+  // ストレートフラッシュテスト用スタブ
+  doStraightFlush() {
+    this._cards = [
+      {suit: "spade", num: 3},
+      {suit: "spade", num: 4},
+      {suit: "spade", num: 5},
+      {suit: "spade", num: 6},
+      {suit: "spade", num: 7}
+    ]
+  }
+
+  // ストレートテスト用スタブ
+  doStraight() {
+    this._cards = [
+      {suit: "heart", num: 1},
+      {suit: "spade", num: 10},
+      {suit: "heart", num: 11},
+      {suit: "heart", num: 12},
+      {suit: "heart", num: 13}
+    ]
+  }
 }

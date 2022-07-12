@@ -121,7 +121,7 @@ export const hand = {
     if (!this.isStraightFlush( cards )) {
       return false;
     }
-    countList = this.numCount( cards );
+    const countList = this.numCount( cards );
     if (countList[1] == 1 && countList[13] == 1) {
       return true;
     }
@@ -171,10 +171,10 @@ export const hand = {
       return 0;
     })
     //10,J,Q,K,A の役は例外
-    if (_cards[0] == 1 && _cards[1] == 10 && _cards[2] == 11
-      && _cards[3] == 12 && _cards[4] == 13) {
+    if (_cards[0].num == 1 && _cards[1].num == 10 && _cards[2].num == 11
+      && _cards[3].num == 12 && _cards[4].num == 13) {
         return true;
-      }
+    }
     for (let i = 0; i < _cards.length-1; i++) {
       if(_cards[i+1].num - _cards[i].num == 1) {
         continue;
