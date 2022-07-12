@@ -1,5 +1,5 @@
 import { ref, onValue, getDatabase} from "https://www.gstatic.com/firebasejs/9.8.2/firebase-database.js"
-import { app } from "./app.js"
+import { app } from "../app.js"
 import { getParam } from "./highScore.js"
 
 /* 6.18 kakishima
@@ -49,7 +49,7 @@ window.onload = function writeHighScore(){
     document.getElementById("write1-3").textContent = _html13;
 
     const _url = window.location.href;
-    const _userID = getParam("userID", _url);
+    const _userID = getParam("uid", _url);
     const _ref2 = ref(_database, '/users/' + _userID);
     onValue(_ref2, (snapshot) => {
       const _highScore = parseInt(snapshot.val().highScore);
