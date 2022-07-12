@@ -1,9 +1,8 @@
-import { ref, getDatabase, get, onValue} from "https://www.gstatic.com/firebasejs/9.8.2/firebase-database.js"
-import { app } from "../app.js"
+import { ref, onValue, getDatabase} from "https://www.gstatic.com/firebasejs/9.8.2/firebase-database.js"
+import { app } from "./app.js"
 import { getParam } from "./highScore.js"
 
-/* 7.03 kakishima
-　 7.04 kaki onValue => get に変更
+/* 6.18 kakishima
 
 ------------------------
 arg : none
@@ -31,7 +30,6 @@ _html2: ログインしているユーザのユーザID・ハイスコアを表�
 window.onload = function writeHighScore(){
   const _database = getDatabase(app);
   const _ref = ref(_database, '/data/' + 'ranking/');
-  //get(_ref).then((snapshot) => {
   onValue(_ref, (snapshot) => {
     let _highScore1 = parseInt(snapshot.val().highScore1);
     let _userID1 = snapshot.val().userID1;
@@ -39,22 +37,23 @@ window.onload = function writeHighScore(){
     let _userID2 = snapshot.val().userID2;
     let _highScore3 = parseInt(snapshot.val().highScore3);
     let _userID3 = snapshot.val().userID3;
-    var _html = "";
-    _html += "--HIGHSCORE--" + "<br>";
-    _html += "1 : " + _userID1 + " " + _highScore1 + "<br>";
-    _html += "2 : " + _userID2 + " " + _highScore2 + "<br>";
-    _html += "3 : " + _userID3 + " " + _highScore3 + "<br><br>";
-    document.getElementById("write").innerHTML = _html;
+
+    var _html11 = "1 : " + _userID1 + " " + _highScore1;
+    var _html12 = "2 : " + _userID2 + " " + _highScore2;
+    var _html13 = "3 : " + _userID3 + " " + _highScore3;
+    document.getElementById("write1-1").textContent = _html11;
+    document.getElementById("write1-2").textContent = _html12;
+    document.getElementById("write1-3").textContent = _html13;
 
     const _url = window.location.href;
-    const _userID = getParam("uid", _url);
+    const _userID = getParam("userID", _url);
     const _ref2 = ref(_database, '/users/' + _userID);
-    get(_ref2).then((snapshot) => {
-    //onValue(_ref2, (snapshot) => {
+    onValue(_ref2, (snapshot) => {
       const _highScore = parseInt(snapshot.val().highScore);
-      var _html2 = "";
-      _html2 += "YourUserID : " + _userID  + "<br>" + "YourHighScore : " + _highScore + "<br>";
-      document.getElementById("write2").innerHTML = _html2;
+      var _html21 = "YourUserID : " + _userID;
+      var _html22 = "YourHighScore : " + _highScore;
+      document.getElementById("write2-1").textContent = _html21;
+      document.getElementById("write2-2").textContent = _html22;
     })
   })
 }
